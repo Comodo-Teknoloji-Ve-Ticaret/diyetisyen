@@ -82,11 +82,15 @@ export const App: React.FC = () => {
       <Footer />
 
       {/* Interactive Modals */}
-      <AppointmentModal
-        isOpen={isAppointmentOpen}
-        onClose={() => setIsAppointmentOpen(false)}
-        preSelectedServiceId={bookingServiceId}
-      />
+      {/* Mounted only while open, so every opening starts fresh with the chosen program */}
+      {isAppointmentOpen && (
+        <AppointmentModal
+          key={bookingServiceId}
+          isOpen
+          onClose={() => setIsAppointmentOpen(false)}
+          preSelectedServiceId={bookingServiceId}
+        />
+      )}
 
       <ClientPortalModal
         isOpen={isPortalOpen}

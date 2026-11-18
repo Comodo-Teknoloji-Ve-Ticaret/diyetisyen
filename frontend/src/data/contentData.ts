@@ -9,16 +9,16 @@ import type {
 
 
 export const CLINIC_INFO = {
-  name: 'Dyt. Sena Alkan',
-  title: 'Uzman Klinik Diyetisyen & Bütünsel Beslenme Stratejisti',
-  clinicName: 'Sena Alkan Bütünsel Beslenme & Wellness Kliniği',
-  motto: 'Kısıtlayıcı diyetlere mahkum olmadan, bedeninle barışık, kalıcı ve şefkatli bir beslenme dönüşümü.',
+  name: 'Dyt. Emir Yontar',
+  title: 'Diyetisyen',
+  clinicName: 'Emir Yontar Beslenme Danışmanlığı',
+  motto: 'Yasak listeleriyle değil, gündelik hayatınıza uyan bir planla. Online ve yüz yüze beslenme danışmanlığı.',
   phone: '+90 (216) 450 88 90',
   whatsapp: '+90 532 100 20 30',
-  email: 'iletisim@senaalkan.com.tr',
+  email: 'iletisim@emiryontar.com',
   address: 'Bağdat Caddesi No: 342 Kat: 4 Daire: 8, Suadiye / Kadıköy, İstanbul',
   workingHours: 'Pazartesi - Cumartesi: 09:00 - 19:00',
-  instagram: '@dytsenaalkan',
+  instagram: '@dytemiryontar',
 };
 
 export const MOOD_NUTRI_DATA: MoodNutriItem[] = [
@@ -26,10 +26,10 @@ export const MOOD_NUTRI_DATA: MoodNutriItem[] = [
     id: 'stressed',
     title: 'Stresli & Gergin',
     subtitle: 'Kortizol Seviyen Yükselmiş Olabilir',
-    emoji: '🧘‍♀️',
-    badge: 'Kortizol & Sinir Sistemi Dengesi',
+    emoji: '',
+    badge: 'Stres Anında Beslenme',
     color: '#E07A5F',
-    biochemistryReason: 'Yüksek stres anında böbrek üstü bezleri kortizol salgılar. Bu durum kan şekerinde ani dalgalanmalara yol açarak vücudun hızlı karbonhidrat arayışına girmesine sebep olur. Amacımız sinir sistemini yatıştıran magnezyum ve GABA öncülerini devreye sokmaktır.',
+    biochemistryReason: 'Yüksek stres anında böbrek üstü bezleri kortizol salgılar. Bu durum kan şekerinde ani dalgalanmalara yol açarak vücudun hızlı karbonhidrat arayışına girmesine sebep olur. Bu anlarda düzenli öğünler, magnezyumdan zengin besinler ve kafeini azaltmak işe yarar.',
     recommendedFoods: [
       'Kabak çekirdeği & çiğ badem (Yüksek magnezyum)',
       'Bitter çikolata (%70+ polifenol desteği)',
@@ -54,21 +54,21 @@ export const MOOD_NUTRI_DATA: MoodNutriItem[] = [
       ],
       instructions: 'Tüm malzemeleri blenderdan geçirin. Ilık veya oda sıcaklığında, acele etmeden, küçük yudumlarla için.'
     },
-    mindfulPractice: '4-7-8 Nefes Egzersizi: 4 saniyede burnundan derin nefes al, 7 saniye tut, 8 saniyede dudaklarını büzerek yavaşça bırak. Bu döngüyü 4 kez tekrarla; vagus sinirin yatışacaktır.'
+    mindfulPractice: '4-7-8 Nefes Egzersizi: 4 saniyede burnundan derin nefes al, 7 saniye tut, 8 saniyede dudaklarını büzerek yavaşça bırak. Bu döngüyü 4 kez tekrarla; bedenin sakinleşmeye başlar.'
   },
   {
     id: 'fatigued',
     title: 'Yorgun & Enerjisiz',
-    subtitle: 'Hücresel Enerjin ve Mitokondrin Destek Bekliyor',
-    emoji: '⚡',
-    badge: 'Mitokondri & B-Kompleks Aktivasyonu',
+    subtitle: 'Öğleden Sonra Enerjin Düşüyorsa',
+    emoji: '',
+    badge: 'Kan Şekeri & Su Dengesi',
     color: '#F4A261',
     biochemistryReason: 'Sürekli yorgunluk hissi çoğunlukla dehidrasyon, B vitamini yetersizliği veya hızlı karbonhidrat tüketiminin ardından gelen reaktif hipoglisemiden (kan şekeri çöküşü) kaynaklanır.',
     recommendedFoods: [
       'Haşlanmış yumurta & avokado (Kolin ve sağlıklı yağlar)',
       'Kinoa, karabuğday ve yulaf ezmesi (Yavaş salınımlı glikoz)',
       'Ispanak & pazı gibi koyu yeşil yapraklılar (Demir ve folat)',
-      'Limonlu & taze zencefilli alkali su',
+      'Bol su (isteğe göre limon veya zencefil ile)',
       'Ceviz içi & chia tohumu (Omega-3 enerji desteği)'
     ],
     foodsToAvoid: [
@@ -77,7 +77,7 @@ export const MOOD_NUTRI_DATA: MoodNutriItem[] = [
       'Ağır kızartmalar'
     ],
     quickRecipe: {
-      name: 'Hücresel Yenilenme Güç Kasesi',
+      name: 'Yoğurtlu Yulaf Kasesi',
       prepTime: '5 Dakika',
       ingredients: [
         '3 yemek kaşığı yoğurt (probiyotik maya)',
@@ -94,7 +94,7 @@ export const MOOD_NUTRI_DATA: MoodNutriItem[] = [
     id: 'sugar_craving',
     title: 'Tatlı Krizinde',
     subtitle: 'Dopamin Arayışı ve Kan Şekeri Dengesizliği',
-    emoji: '🍩',
+    emoji: '',
     badge: 'Dopamin & İnsülin Dengesi',
     color: '#E76F51',
     biochemistryReason: 'Tatlı isteği aslında iradesizlik değil; beyindeki ödül merkezinin dopamin sinyali veya kan şekerindeki ani düşüşün yardım çağrısıdır. Tatlıyı yasaklamak yerine, glisemik yükü düşük doğal liflerle denge kuruyoruz.',
@@ -118,7 +118,7 @@ export const MOOD_NUTRI_DATA: MoodNutriItem[] = [
         'Bolca toz Seylan tarçını',
         '1 tatlı kaşığı rendelenmiş hindistan cevizi'
       ],
-      instructions: 'Elma dilimlerinin üzerine fıstık ezmesini sürün, bol tarçın serpin. Lif ve yağ dengesi tatlı krizini 7 dakikada sonlandırır.'
+      instructions: 'Elma dilimlerinin üzerine fıstık ezmesini sürün, bol tarçın serpin. Lif ve yağ birlikte tatlı isteğini daha uzun süre bastırır.'
     },
     mindfulPractice: '10 Dakika Kuralı: Kendine şunu söyle: "Bu isteği yasaklamıyorum, sadece 10 dakika erteleyip 1 bardak tarçınlı su içiyorum. 10 dakika sonra hala canım çekerse bilinçli bir seçim yapacağım."'
   },
@@ -126,7 +126,7 @@ export const MOOD_NUTRI_DATA: MoodNutriItem[] = [
     id: 'emotional_hunger',
     title: 'Duygusal Açlık',
     subtitle: 'Miden mi Aç, Yoksa Ruhun mu?',
-    emoji: '🌀',
+    emoji: '',
     badge: 'Açlık Skalası & Farkındalıkla Beslenme',
     color: '#2A9D8F',
     biochemistryReason: 'Fiziksel açlık yavaş yavaş gelir, her sağlıklı yiyecekle tatmin olur. Duygusal açlık ise aniden gelir; spesifik bir gıdayı ister ve yendikten sonra suçluluk hissettirir. Bedenin burada yiyeceğe değil, şefkate ve ilgiye ihtiyaç duyuyor.',
@@ -141,7 +141,7 @@ export const MOOD_NUTRI_DATA: MoodNutriItem[] = [
       'Ekran karşısında şuursuzca tüketilen atıştırmalıklar'
     ],
     quickRecipe: {
-      name: 'Sıcak Ruh Kasesi: Zencefilli Sebze Çorbası',
+      name: 'Limonlu Sebze Çorbası',
       prepTime: '6 Dakika',
       ingredients: [
         '1 kase sıcak sebze veya mercimek püresi çorbası',
@@ -149,18 +149,18 @@ export const MOOD_NUTRI_DATA: MoodNutriItem[] = [
         '1 tatlı kaşığı zeytinyağı',
         'Bir tutam taze nane veya dereotu'
       ],
-      instructions: 'Çorbanı güzel bir seramik kaseye koy. İki elinle kaseyi kavrayıp sıcaklığını hisset. Kokla ve her kaşığı şükranla yut.'
+      instructions: 'Çorbayı ısıtın, limon ve zeytinyağını ekleyin. Masaya oturup, ekrandan uzak ve yavaş için.'
     },
     mindfulPractice: 'H.A.L.T. Kontrolü: Aç mısın? Yoksa Hungry (Aç), Angry (Öfkeli), Lonely (Yalnız) veya Tired (Yorgun) musun? Adını koyduğun duygu gücünü kaybeder.'
   },
   {
     id: 'brain_fog',
     title: 'Zihinsel Sis & Odaklanma',
-    subtitle: 'Nöronlarını ve Beyin Bariyerini Besle',
-    emoji: '🧠',
-    badge: 'Nöro-Beslenme & Odaklanma Artışı',
+    subtitle: 'Gün İçinde Dağınık Hissediyorsan',
+    emoji: '',
+    badge: 'Uyku, Su & Öğün Düzeni',
     color: '#457B9D',
-    biochemistryReason: 'Zihinsel yorgunluk ve odaklanamama çoğunlukla hücresel enflamasyon, omega-3 düşüklüğü ve mikrobiyota dengesizliğiyle ilişkilidir. Beynin %60’ı yağdan oluşur; doğru yağlarla beslemek bilişsel netliği anında artırır.',
+    biochemistryReason: 'Odaklanma güçlüğü çoğu zaman uykusuzluk, susuzluk ve uzun süre aç kalmayla ilişkilidir. Düzenli uyku, yeterli su ve omega-3 kaynaklarını içeren bir beslenme düzeni odaklanmayı destekler.',
     recommendedFoods: [
       'Ceviz, keten tohumu ve chia (Bitkisel Omega-3)',
       'Yeşil çay / Matcha (L-theanine ve kafein sinerjisi)',
@@ -174,24 +174,24 @@ export const MOOD_NUTRI_DATA: MoodNutriItem[] = [
       'Yetersiz su tüketimi'
     ],
     quickRecipe: {
-      name: 'Nöro-Netlik Matcha İksiri',
+      name: 'Sütlü Matcha',
       prepTime: '3 Dakika',
       ingredients: [
-        '1 çay kaşığı seremoniyal matcha tozu',
+        '1 çay kaşığı matcha tozu',
         'Yarım fincan 80 derece sıcak su',
         'Yarım fincan ılık yulaf veya badem sütü',
-        '1 çay kaşığı soğuk sıkım hindistan cevizi yağı (MCT yağ asitleri)'
+        'İsteğe göre bir çimdik tarçın'
       ],
-      instructions: 'Matchayı sıcak suda bambu çırpıcı veya süt köpürtücü ile çırpın. Süt ve hindistan cevizi yağını ekleyerek köpürtün.'
+      instructions: 'Matchayı sıcak suda çırpın, ılık sütü ekleyip karıştırın.'
     },
     mindfulPractice: '2 Dakikalık Duruş Düzeltme & Gökyüzü Molası: Sandalyeden kalk, pencereden en uzak noktaya bak. Göz kaslarını dinlendirirken 5 derin nefes al.'
   },
   {
     id: 'bloated',
     title: 'Şişkinlik & Gaz',
-    subtitle: 'Sindirim Ateşini ve Mikrobiyotayı Rahatlat',
-    emoji: '🌱',
-    badge: 'Bağırsak-Mikrobiyota İyileşmesi',
+    subtitle: 'Sindirimi Rahatlatmak İçin',
+    emoji: '',
+    badge: 'Sindirim Dostu Seçimler',
     color: '#52B788',
     biochemistryReason: 'Şişkinlik; sindirim enzimlerinin yetersizliği, hızlı yemek yeme sebebiyle hava yutulması veya FODMAP grubu gıdaların kolonda aşırı fermente olması sonucu meydana gelir.',
     recommendedFoods: [
@@ -207,7 +207,7 @@ export const MOOD_NUTRI_DATA: MoodNutriItem[] = [
       'Yapay sakızlar (hava yutturur ve şeker alkolleri şişirir)'
     ],
     quickRecipe: {
-      name: 'Sindirim Kurtarıcısı Sıcak İnfüzyon',
+      name: 'Rezeneli Zencefil Çayı',
       prepTime: '5 Dakika',
       ingredients: [
         '1 tatlı kaşığı rezene tohumu (hafif havanda ezilmiş)',
@@ -229,46 +229,46 @@ export const SERVICES_DATA: ServiceItem[] = [
     tagline: 'Yasaklar olmadan, bedeninin doğal açlık ve tokluk ritmini keşfet.',
     duration: '3 - 6 Aylık Bireysel Danışmanlık',
     badge: 'En Popüler Program',
-    description: 'Kalori sayma takıntısından ve şok diyet döngüsünden kurtulmanızı sağlayan bilimsel ve psikolojik temelli beslenme rehberliği. Yaşam tarzınıza, sosyal hayatınıza ve damak zevkinize özel esnek planlama.',
+    description: 'Şok diyetlerle verip geri alma döngüsünden çıkmak isteyenler için. İş temponuza, sosyal hayatınıza ve sevdiğiniz yemeklere göre hazırlanan esnek bir plan.',
     features: [
       'Detaylı Vücut Kompozisyon & Yaşam Tarzı Analizi',
       'Haftalık Birebir Görüntülü Seanslar (45 Dk)',
       'Kişiselleştirilmiş, Yasaksız Beslenme Haritası',
-      '7/24 WhatsApp Soru & Acil Destek Hattı',
+      'Hafta İçi WhatsApp Üzerinden Soru-Cevap',
       'Özel Danışan Paneli & Mobil Menü Takibi',
-      'Duygusal Yeme ve Tetikleyici Atölyesi'
+      'Duygusal Yeme Üzerine Ek Seans'
     ],
     idealFor: 'Sürekli kilo verip geri alanlar, diyet yapmaktan yorulanlar ve yiyeceklerle barışmak isteyenler.'
   },
   {
     id: 'fonksiyonel-tip',
     title: 'Fonksiyonel Beslenme & Bağırsak Sağlığı',
-    tagline: 'Kök nedeni keşfedin: İBS, otoimmünite, insülin direnci ve hormonal denge.',
+    tagline: 'İBS, insülin direnci, PCOS ve tiroid sorunlarında beslenme desteği.',
     duration: '4 Aylık Kapsamlı İyileşme Protokolü',
     badge: 'Klinik & Fonksiyonel',
-    description: 'Sadece kaloriye değil; hücresel biyokimyaya odaklanan yaklaşım. Bağırsak mikrobiyotası, geçirgen bağırsak sendromu, Haşimato, PCOS ve insülin direnci için kanıtlanmış eliminasyon ve onarım protokolleri.',
+    description: 'Kan tahlillerinizi ve şikayetlerinizi birlikte değerlendirip, hekiminizin tedavisiyle uyumlu bir beslenme planı hazırlıyoruz. İBS, Haşimato, PCOS ve insülin direnci en sık çalıştığımız konular.',
     features: [
       'Kapsamlı Kan Tahlili & Fonksiyonel Biyobelirteç İncelemesi',
       'Mikrobiyota & Eliminasyon Diyeti Yol Haritası',
-      'Kişiselleştirilmiş Takviye & Fitoterapi Protokolü',
+      'Gerekirse Takviye Önerisi (Hekim Onayıyla)',
       'Gıda İntoleransı ve Tetikleyici Besin Günlüğü',
       '2 Haftada Bir Detaylı Klinik Değerlendirme',
-      'Bağırsak-Beyin Aksı Yaşam Tarzı Rehberi'
+      'Uyku ve Stres İçin Pratik Öneriler'
     ],
     idealFor: 'Sürekli şişkinlik, kronik yorgunluk, PCOS, insülin direnci veya tiroid problemi yaşayanlar.'
   },
   {
     id: 'sporcu-performans',
     title: 'Sporcu Beslenmesi & Vücut Kompozisyonu',
-    tagline: 'Antrenman verimini maksimize et, yağsız kas kütleni artır ve hızlı toparlan.',
+    tagline: 'Antrenmanınıza göre ayarlanmış öğün ve makro planı.',
     duration: 'Aylık Performans Takibi',
     badge: 'Performans Odaklı',
     description: 'Dayanıklılık sporcuları, fitness meraklıları ve profesyonel atletler için antrenman periyodizasyonuna göre uyarlanmış makro zamanlaması (nutrient timing), hidrasyon ve toparlanma protokolü.',
     features: [
       'Antrenman Günü vs. Dinlenme Günü Özel Makro Planları',
       'Antrenman Öncesi, Sırası ve Sonrası Besin Zamanlaması',
-      'Yağ Yakımı ve Hipertrofi Hedefli Biyo-Ritim Çizelgesi',
-      'Kanıta Dayalı Ergojenik Destek & Supplement Rehberi',
+      'Yağ Kaybı veya Kas Kazanımı Hedefli Haftalık Plan',
+      'Supplement Kullanımı Hakkında Danışmanlık',
       'Müsabaka / Yarışma Öncesi Yükleme Stratejileri',
       'Performans ve Dayanıklılık İlerleme Raporları'
     ],
@@ -276,18 +276,18 @@ export const SERVICES_DATA: ServiceItem[] = [
   },
   {
     id: 'moodnutri-vip',
-    title: 'MoodNutri™ Duygu & Zihin Odaklı Beslenme',
-    tagline: 'Stres, duygusal yeme ve tükenmişliği nöro-beslenme ile iyileştir.',
+    title: 'Duygusal Yeme Danışmanlığı',
+    tagline: 'Stres yemeleri, gece atıştırmaları ve tatlı krizleri için.',
     duration: '2 Aylık Bütünsel Dönüşüm Programı',
-    badge: 'Özel USP Programı',
-    description: 'Yeme davranışının ardındaki psikolojik ve biyokimyasal tetikleyicileri dönüştüren özel program. Dopamin, serotonin ve kortizol dengesini gözeten besin seçimleri ile zihinsel berraklık.',
+    badge: 'Yeni Program',
+    description: 'Ne yediğinizden çok neden ve ne zaman yediğinize odaklanan bir program. Tetikleyicileri birlikte buluyor, kriz anları için uygulanabilir bir plan hazırlıyoruz.',
     features: [
       'Duygu Durum ve Beslenme Tetikleyici Envanteri',
-      'Nörotransmitter Dengeleyici Öğün Planları',
+      'Düzenli Öğün Planı ve Ara Öğün Stratejisi',
       'Mindful Eating (Bilinçli Farkındalıkla Yeme) Pratikleri',
-      'Gece Tatlı Krizlerini Sonlandıran Acil Eylem Kiti',
-      'Uyku Kalitesi & Sirkadiyen Ritim Optimizasyonu',
-      'Dyt. Sena Alkan ile Haftalık Birebir Koçluk'
+      'Gece Atıştırmaları İçin Pratik Alternatifler',
+      'Uyku Düzeni Üzerine Öneriler',
+      'Haftalık Birebir Görüşme'
     ],
     idealFor: 'Stres anında dolabın önünde kendini bulanlar, gece yemeleri yaşayanlar ve zihinsel sis hissedenler.'
   }
@@ -296,36 +296,33 @@ export const SERVICES_DATA: ServiceItem[] = [
 export const TESTIMONIALS_DATA: TestimonialItem[] = [
   {
     id: '1',
-    clientName: 'Burcu Yılmaz',
+    clientName: 'Burcu Y.',
     age: 34,
     occupation: 'Yazılım Mühendisi',
-    achievement: '-14 kg & İnsülin Direncini Yendi',
-    quote: 'Sena Hanım ile tanışmadan önce hayatım pazartesi başlayıp çarşamba biten açlık diyetleriyle doluydu. İlk defa ekmek yerken suçluluk hissetmedim ve kan tahlillerimde HOMA-IR değerim 4.2’den 1.4’e geriledi!',
+    achievement: '5 ayda -14 kg',
+    quote: 'Emir Bey ile çalışmadan önce hayatım pazartesi başlayıp çarşamba biten açlık diyetleriyle doluydu. İlk defa ekmek yerken suçluluk hissetmedim, kontrol tahlilimde insülin direncim de belirgin şekilde düzeldi.',
     timeframe: '5 Aylık Süreç',
-    tags: ['Sürdürülebilir Kilo', 'İnsülin Direnci', 'Özşefkat'],
-    avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80'
+    tags: ['Sürdürülebilir Kilo', 'İnsülin Direnci']
   },
   {
     id: '2',
-    clientName: 'Emre Çetinkaya',
+    clientName: 'Emre Ç.',
     age: 29,
     occupation: 'Finans Yöneticisi',
-    achievement: 'Kronik Şişkinlik & İBS Son Buldu',
-    quote: 'MoodNutri yaklaşımı sayesinde iş stresimin bağırsaklarımı nasıl kilitlediğini anladım. Eliminasyon protokolüyle enerjim iki katına çıktı, artık toplantılarda rahatsız edici gaz krampları yaşamıyorum.',
+    achievement: 'Şişkinlik şikayeti azaldı',
+    quote: 'Yıllardır şişkinlikle uğraşıyordum. Hangi besinlerin dokunduğunu adım adım bulduk, artık iş yerinde gün boyu rahatım.',
     timeframe: '3 Aylık Süreç',
-    tags: ['Bağırsak Sağlığı', 'İBS Tedavisi', 'MoodNutri'],
-    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80'
+    tags: ['Bağırsak Sağlığı', 'İBS']
   },
   {
     id: '3',
-    clientName: 'Deniz Aktaş',
+    clientName: 'Deniz A.',
     age: 41,
-    occupation: 'Mimar & Anne',
-    achievement: 'Duygusal Yeme Bağımlılığını Çözdü',
-    quote: 'Çocuklar uyuduktan sonra mutfağa gidip gizlice tatlı yeme nöbetlerim vardı. Sena Hanım bana bedenimi yargılamadan dinlemeyi öğretti. Artık yemek bir kaçış değil, bedenime sunduğum bir şükran.',
+    occupation: 'Mimar',
+    achievement: 'Gece yemeleri bitti',
+    quote: 'Çocuklar uyuduktan sonra mutfağa gidip gizlice tatlı yeme nöbetlerim vardı. Emir Bey bunu yasaklarla değil, akşam öğününü düzenleyerek çözdü. Artık geceleri mutfağa gitme ihtiyacı hissetmiyorum.',
     timeframe: '4 Aylık Süreç',
-    tags: ['Duygusal Açlık', 'Sezgisel Beslenme', 'Kalıcı Dönüşüm'],
-    avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=200&q=80'
+    tags: ['Duygusal Açlık', 'Gece Yemeleri']
   }
 ];
 
@@ -334,31 +331,31 @@ export const FAQ_DATA: FAQItem[] = [
     id: 'faq-1',
     category: 'genel',
     question: 'Online diyet seansları yüz yüze seanslar kadar etkili mi?',
-    answer: 'Kesinlikle evet! Danışanlarımızın %70’i yurt içi ve yurt dışından online olarak hizmet alıyor. Görüntülü görüşmelerimiz, özel mobil danışan panelimiz ve 7/24 WhatsApp iletişimimiz sayesinde yüz yüze seanslardan çok daha dinamik ve anlık bir takip ortamı sağlıyoruz.'
+    answer: 'Evet. Danışanlarımın büyük kısmı online görüşüyor. Görüntülü görüşmede tartı ve ölçüm sonuçlarınızı birlikte değerlendiriyoruz; hafta içi WhatsApp üzerinden de sorularınızı yanıtlıyorum.'
   },
   {
     id: 'faq-2',
     category: 'yontem',
     question: 'Diyet listelerinde katı yasaklar veya bulunması zor gıdalar var mı?',
-    answer: 'Asla! Bizim felsefemiz kısıtlayıcı yasaklar üzerine değil, sürdürülebilir alışkanlıklar üzerine kuruludur. Evinizde pişen tencere yemekleri, gittiğiniz restorandaki alternatifler ve sevdiğiniz lezzetler listenizde yer alır. Bulunması zor pahalı süper besinlere ihtiyacınız yok.'
+    answer: 'Hayır. Evde pişen tencere yemekleri, dışarıda yemek yediğiniz günler ve sevdiğiniz yiyecekler planın içinde yer alır. Pahalı ya da bulunması zor ürünlere ihtiyacınız yok.'
   },
   {
     id: 'faq-3',
     category: 'yontem',
-    question: 'MoodNutri (Duygu Durumuna Göre Beslenme) nedir, nasıl uygulanır?',
-    answer: 'MoodNutri kliniğimize özgü, nöro-beslenme temelli bir yaklaşımdır. Yemek seçimlerimizin %80’i duygularımızla yönetilir. Stres, üzüntü, yorgunluk veya ödül arayışı anlarında biyokimyanızın neye ihtiyaç duyduğunu tespit eder; kortizol ve insülini yatıştıracak pratik çözümler sunarız.'
+    question: 'Duygusal yeme danışmanlığı nasıl ilerliyor?',
+    answer: 'İlk görüşmede hangi durumlarda yemeğe yöneldiğinizi konuşuyoruz. Ardından kısa bir yeme günlüğü tutuyorsunuz ve kriz anları için uygulanabilir alternatifler belirliyoruz. Gerekli görürsem bir psikologla birlikte çalışmanızı da öneririm.'
   },
   {
     id: 'faq-4',
     category: 'genel',
     question: 'Başlamadan önce kan tahlili yaptırmam gerekiyor mu?',
-    answer: 'Evet, sağlığınız bizim için çok kıymetli. Son 6 ay içerisinde yapılmış tam kan sayımı, biyokimya, tiroid ve insülin değerlerinizi içeren tahlillerinizi inceliyoruz. Eğer yakın zamanda tahliliniz yoksa, hekiminize danışarak yaptırabileceğiniz tahlil listesini size iletiyoruz.'
+    answer: 'Önerilir. Son 6 ay içerisinde yapılmış tam kan sayımı, biyokimya, tiroid ve insülin değerlerinizi içeren tahlillerinizi inceliyoruz. Eğer yakın zamanda tahliliniz yoksa, hekiminize danışarak yaptırabileceğiniz tahlil listesini size iletiyoruz.'
   },
   {
     id: 'faq-5',
     category: 'online',
     question: 'Randevu aldığımda süreç nasıl başlıyor?',
-    answer: 'Randevu formunuzu onayladıktan sonra size 15 dakikalık kapsamlı bir Beslenme & Yaşam Tarzı Anamnez Formu gönderilir. İlk seansımızda bu formu, sağlık geçmişinizi ve hedeflerinizi konuşarak ilk haftalık yol haritanızı birlikte oluştururuz.'
+    answer: 'Randevunuz onaylandıktan sonra size kısa bir ön bilgi formu gönderilir. İlk seansımızda bu formu, sağlık geçmişinizi ve hedeflerinizi konuşarak ilk haftalık yol haritanızı birlikte oluştururuz.'
   }
 ];
 
@@ -394,13 +391,13 @@ export function calculateNutrition(input: CalorieCalculatorInput): CalorieCalcul
   if (goal === 'lose_weight') {
     // Healthy 20% deficit (around 400-500 kcal)
     targetCalories = Math.max(Math.round(tdee * 0.8), gender === 'male' ? 1500 : 1200);
-    tip = 'Sürdürülebilir kilo kaybı için kas kütlenizi korurken haftada ortalama 0.5 - 1 kg hedefleyen dengeli bir kalori açığı oluşturuldu.';
+    tip = 'Haftada ortalama 0,5–1 kg kayıp için ılımlı bir kalori açığı hesaplandı.';
   } else if (goal === 'gain_muscle') {
     // Lean surplus of 15%
     targetCalories = Math.round(tdee * 1.15);
-    tip = 'Hücresel toparlanmayı ve yağsız kas dokusu gelişimini destekleyecek temiz bir kalori fazlası ve yüksek protein dengesi kurgulandı.';
+    tip = 'Kas kazanımı için hafif bir kalori fazlası ve yüksek protein hedeflendi.';
   } else {
-    tip = 'Metabolik hızınızı koruyan, kan şekerinizi sabit tutan ve gün boyu enerjinizi yüksek tutacak koruma dengesi.';
+    tip = 'Mevcut kilonuzu korumanız için gereken yaklaşık enerji miktarı.';
   }
 
   // Macro Distribution: Protein: 25-30%, Fat: 25-30%, Carbs: 45-50%

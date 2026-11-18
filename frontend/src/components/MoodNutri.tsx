@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import { 
-  Sparkles, 
   Brain, 
+  CloudLightning,
+  BatteryLow,
+  Cookie,
+  HeartCrack,
+  CloudFog,
+  Leaf,
   CheckCircle, 
   XCircle, 
   UtensilsCrossed, 
@@ -20,6 +25,18 @@ interface MoodNutriProps {
 export const MoodNutri: React.FC<MoodNutriProps> = ({ onOpenAppointment }) => {
   const [selectedMoodId, setSelectedMoodId] = useState<MoodType>('stressed');
 
+  const moodIcon = (id: string, size: number) => {
+    const props = { size, strokeWidth: 1.75 };
+    switch (id) {
+      case 'stressed': return <CloudLightning {...props} />;
+      case 'fatigued': return <BatteryLow {...props} />;
+      case 'sugar_craving': return <Cookie {...props} />;
+      case 'emotional_hunger': return <HeartCrack {...props} />;
+      case 'brain_fog': return <CloudFog {...props} />;
+      default: return <Leaf {...props} />;
+    }
+  };
+
   const selectedItem: MoodNutriItem = 
     MOOD_NUTRI_DATA.find(item => item.id === selectedMoodId) || MOOD_NUTRI_DATA[0];
 
@@ -35,32 +52,17 @@ export const MoodNutri: React.FC<MoodNutriProps> = ({ onOpenAppointment }) => {
       <div className="container">
         {/* Header */}
         <div style={{ textAlign: 'center', maxWidth: '780px', margin: '0 auto 3.5rem auto' }}>
-          <div 
-            className="section-tag"
-            style={{
-              backgroundColor: '#F3E8FF',
-              color: '#8338EC',
-              border: '1px solid rgba(131, 56, 236, 0.25)'
-            }}
-          >
-            <Sparkles size={16} />
-            <span>Sektörde Bir İlk • Kliniğimize Özgü USP</span>
+          <div className="section-tag">
+            <Brain size={16} />
+            <span>Duygusal Yeme</span>
           </div>
           <h2 className="section-title">
-            MoodNutri™:{' '}
-            <span 
-              style={{
-                background: 'linear-gradient(135deg, #8338EC 0%, var(--color-accent) 100%)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent'
-              }}
-            >
-              Duygu Durumuna Göre Beslenme Rehberi
-            </span>
+            Bugün nasıl hissediyorsunuz?{' '}
+            <span style={{ color: 'var(--color-primary-text)' }}>Ona göre ne yiyebilirsiniz?</span>
           </h2>
           <p className="section-subtitle" style={{ margin: '0 auto' }}>
-            Yemek seçimlerimizin %80’i mideden değil, duygularımız ve nörotransmitter dengesizliğimizden kaynaklanır. 
-            Şu an kendinizi nasıl hissediyorsunuz? Seçin, biyolojinizin çağrısına uygun beslenme reçetesini anında alın.
+            Yorgun, stresli ya da canınız tatlı çekiyorsa, aşağıdan size en yakın durumu seçin.
+            Kısa bir açıklama, birkaç besin önerisi ve 5 dakikada hazırlanan bir tarif göreceksiniz.
           </p>
         </div>
 
@@ -68,7 +70,7 @@ export const MoodNutri: React.FC<MoodNutriProps> = ({ onOpenAppointment }) => {
         <div 
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(170px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(150px, 45%), 1fr))',
             gap: '1rem',
             marginBottom: '3rem'
           }}
@@ -83,17 +85,17 @@ export const MoodNutri: React.FC<MoodNutriProps> = ({ onOpenAppointment }) => {
                 style={{
                   padding: '1.25rem 1rem',
                   borderRadius: '20px',
-                  border: isSelected ? '2px solid #8338EC' : '1px solid var(--border-light)',
-                  backgroundColor: isSelected ? 'var(--bg-surface)' : 'var(--bg-surface)',
-                  boxShadow: isSelected ? '0 10px 24px rgba(131, 56, 236, 0.2)' : 'var(--shadow-sm)',
+                  border: isSelected ? '2px solid var(--color-primary)' : '1px solid var(--border-light)',
+                  backgroundColor: 'var(--bg-surface)',
+                  boxShadow: isSelected ? 'var(--shadow-md)' : 'var(--shadow-sm)',
                   cursor: 'pointer',
                   textAlign: 'center',
                   transition: 'all 0.25s cubic-bezier(0.16, 1, 0.3, 1)',
                   transform: isSelected ? 'translateY(-4px)' : 'none'
                 }}
               >
-                <div style={{ fontSize: '2.2rem', marginBottom: '0.5rem' }}>{item.emoji}</div>
-                <div style={{ fontWeight: 700, fontSize: '0.95rem', color: isSelected ? '#8338EC' : 'var(--text-main)', marginBottom: '0.2rem' }}>
+                <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '0.6rem', color: isSelected ? 'var(--color-primary)' : 'var(--text-muted)' }}>{moodIcon(item.id, 30)}</div>
+                <div style={{ fontWeight: 700, fontSize: '0.95rem', color: isSelected ? 'var(--color-primary)' : 'var(--text-main)', marginBottom: '0.2rem' }}>
                   {item.title}
                 </div>
                 <div style={{ fontSize: '0.725rem', color: 'var(--text-muted)', lineHeight: 1.3 }}>
@@ -106,13 +108,14 @@ export const MoodNutri: React.FC<MoodNutriProps> = ({ onOpenAppointment }) => {
 
         {/* Interactive Mood Detail Box */}
         <div 
-          className="glass-panel"
+          key={selectedItem.id}
+          className="glass-panel panel-pad"
           style={{
             padding: '2.75rem',
             backgroundColor: 'var(--bg-surface)',
             borderRadius: '28px',
-            boxShadow: 'var(--shadow-lg)',
-            border: '1px solid rgba(131, 56, 236, 0.2)',
+            boxShadow: 'var(--shadow-md)',
+            border: '1px solid var(--border-light)',
             animation: 'fadeIn 0.3s ease'
           }}
         >
@@ -135,14 +138,15 @@ export const MoodNutri: React.FC<MoodNutriProps> = ({ onOpenAppointment }) => {
                   width: '56px',
                   height: '56px',
                   borderRadius: '16px',
-                  backgroundColor: '#F3E8FF',
+                  backgroundColor: 'var(--color-primary-light)',
+                  color: 'var(--color-primary-text)',
+                  flexShrink: 0,
                   display: 'flex',
                   alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '2rem'
+                  justifyContent: 'center'
                 }}
               >
-                {selectedItem.emoji}
+                {moodIcon(selectedItem.id, 28)}
               </div>
               <div>
                 <span 
@@ -151,14 +155,14 @@ export const MoodNutri: React.FC<MoodNutriProps> = ({ onOpenAppointment }) => {
                     fontWeight: 700,
                     padding: '0.25rem 0.75rem',
                     borderRadius: 'var(--radius-full)',
-                    backgroundColor: '#F3E8FF',
-                    color: '#8338EC'
+                    backgroundColor: 'var(--color-primary-light)',
+                    color: 'var(--color-primary-text)'
                   }}
                 >
                   {selectedItem.badge}
                 </span>
                 <h3 style={{ fontSize: '1.75rem', color: 'var(--text-main)', marginTop: '0.35rem' }}>
-                  {selectedItem.title} Modundasınız
+                  {selectedItem.title}
                 </h3>
               </div>
             </div>
@@ -168,7 +172,7 @@ export const MoodNutri: React.FC<MoodNutriProps> = ({ onOpenAppointment }) => {
               className="btn btn-accent"
               style={{ fontSize: '0.9rem', padding: '0.65rem 1.25rem' }}
             >
-              <span>MoodNutri Danışmanlığı Al</span>
+              <span>Bu konuda görüşelim</span>
               <ArrowRight size={16} />
             </button>
           </div>
@@ -184,9 +188,9 @@ export const MoodNutri: React.FC<MoodNutriProps> = ({ onOpenAppointment }) => {
             }}
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.5rem' }}>
-              <Brain size={20} color="#8338EC" />
+              <Brain size={20} color="var(--color-primary-text)" />
               <div style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--text-main)' }}>
-                Bedeninizin Biyokimyasal Çağrısı (Neden Böyle Hissediyorsunuz?)
+                Neden böyle hissediyor olabilirsiniz?
               </div>
             </div>
             <p style={{ color: 'var(--text-muted)', lineHeight: 1.7, fontSize: '0.95rem', margin: 0 }}>
@@ -198,9 +202,9 @@ export const MoodNutri: React.FC<MoodNutriProps> = ({ onOpenAppointment }) => {
           <div 
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-              gap: '2rem',
-              marginBottom: '2.5rem'
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(300px, 100%), 1fr))',
+              gap: '1.5rem',
+              marginBottom: '2rem'
             }}
           >
             {/* Foods to Eat */}
@@ -213,15 +217,15 @@ export const MoodNutri: React.FC<MoodNutriProps> = ({ onOpenAppointment }) => {
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.25rem' }}>
-                <CheckCircle size={20} color="var(--color-primary)" />
-                <h4 style={{ fontSize: '1.1rem', color: 'var(--color-primary)' }}>
-                  Şu An Tüketilmesi Önerilenler
+                <CheckCircle size={20} color="var(--color-primary-text)" />
+                <h4 style={{ fontSize: '1.1rem', color: 'var(--color-primary-text)' }}>
+                  Bunları deneyin
                 </h4>
               </div>
               <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
                 {selectedItem.recommendedFoods.map((food, i) => (
                   <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.9rem', color: 'var(--text-main)' }}>
-                    <span style={{ color: 'var(--color-primary)', fontWeight: 700 }}>•</span>
+                    <span style={{ color: 'var(--color-primary-text)', fontWeight: 700 }}>•</span>
                     <span>{food}</span>
                   </li>
                 ))}
@@ -240,7 +244,7 @@ export const MoodNutri: React.FC<MoodNutriProps> = ({ onOpenAppointment }) => {
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.25rem' }}>
                 <XCircle size={20} color="var(--color-accent)" />
                 <h4 style={{ fontSize: '1.1rem', color: 'var(--color-accent)' }}>
-                  Şu An Uzak Durulması Gerekenler
+                  Bunları azaltın
                 </h4>
               </div>
               <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
@@ -258,8 +262,8 @@ export const MoodNutri: React.FC<MoodNutriProps> = ({ onOpenAppointment }) => {
           <div 
             style={{
               display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-              gap: '2rem'
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(300px, 100%), 1fr))',
+              gap: '1.5rem'
             }}
           >
             {/* Quick Emergency Recipe */}
@@ -271,32 +275,32 @@ export const MoodNutri: React.FC<MoodNutriProps> = ({ onOpenAppointment }) => {
                 border: '1px solid var(--border-light)'
               }}
             >
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
+              <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '0.35rem 1rem', marginBottom: '1rem' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <UtensilsCrossed size={18} color="var(--color-primary)" />
+                  <UtensilsCrossed size={18} color="var(--color-primary-text)" />
                   <h4 style={{ fontSize: '1.05rem', color: 'var(--text-main)' }}>
                     {selectedItem.quickRecipe.name}
                   </h4>
                 </div>
-                <span style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+                <span style={{ display: 'flex', alignItems: 'center', gap: '0.3rem', fontSize: '0.8rem', color: 'var(--text-muted)', whiteSpace: 'nowrap' }}>
                   <Clock size={14} />
                   {selectedItem.quickRecipe.prepTime}
                 </span>
               </div>
 
               <div style={{ fontSize: '0.825rem', fontWeight: 700, color: 'var(--text-muted)', marginBottom: '0.5rem' }}>
-                MALZEMELER:
+                Malzemeler
               </div>
               <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 1rem 0', display: 'flex', flexDirection: 'column', gap: '0.35rem' }}>
                 {selectedItem.quickRecipe.ingredients.map((ing, i) => (
                   <li key={i} style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
-                    ✓ {ing}
+                    – {ing}
                   </li>
                 ))}
               </ul>
 
               <div style={{ fontSize: '0.825rem', fontWeight: 700, color: 'var(--text-muted)', marginBottom: '0.35rem' }}>
-                HAZIRLANIŞI:
+                Hazırlanışı
               </div>
               <p style={{ fontSize: '0.85rem', color: 'var(--text-main)', margin: 0, lineHeight: 1.5 }}>
                 {selectedItem.quickRecipe.instructions}
@@ -319,7 +323,7 @@ export const MoodNutri: React.FC<MoodNutriProps> = ({ onOpenAppointment }) => {
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1rem' }}>
                   <Wind size={20} color="#2A9D8F" />
                   <h4 style={{ fontSize: '1.05rem', color: 'var(--text-main)' }}>
-                    30 Saniyelik Zihinsel & Beden Molası
+                    Kısa bir mola
                   </h4>
                 </div>
                 <p style={{ fontSize: '0.925rem', color: 'var(--text-main)', lineHeight: 1.7, marginBottom: '1.25rem' }}>
@@ -337,7 +341,7 @@ export const MoodNutri: React.FC<MoodNutriProps> = ({ onOpenAppointment }) => {
                   border: '1px solid var(--border-subtle)'
                 }}
               >
-                🌿 <em>"Duygularını bastırmak için yemek yeme; duygularını anla, bedenini şifalandır."</em>
+                Bu öneriler genel bilgilendirme amaçlıdır. Sık tekrarlayan yeme atakları yaşıyorsanız bir uzmanla görüşmenizi öneririm.
               </div>
             </div>
           </div>

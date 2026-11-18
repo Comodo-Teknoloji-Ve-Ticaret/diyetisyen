@@ -5,7 +5,6 @@ import {
   HeartHandshake, 
   CheckCircle, 
   XCircle, 
-  Sparkles,
   GraduationCap
 } from 'lucide-react';
 
@@ -19,14 +18,14 @@ export const About: React.FC = () => {
         <div style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto 3.5rem auto' }}>
           <div className="section-tag">
             <GraduationCap size={16} />
-            <span>Bilim, Biyokimya ve Empati</span>
+            <span>Hakkımda</span>
           </div>
           <h2 className="section-title">
-            Diyetisyenin Sadece Kalori Saymaz;{' '}
-            <span style={{ color: 'var(--color-primary)' }}>Ruhunu ve Hormonlarını da Dinler</span>
+            Kalori saymaktan fazlası:{' '}
+            <span style={{ color: 'var(--color-primary-text)' }}>sizi dinleyen bir süreç</span>
           </h2>
           <p className="section-subtitle" style={{ margin: '0 auto' }}>
-            "Beslenmeyi bir kısıtlama zinciri değil; bedeninizle kurduğunuz en derin, en şefkatli dostluk olarak görüyorum."
+            İyi bir beslenme planı, uygulanabildiği kadar iyidir. Bu yüzden önce sizi ve gününüzün nasıl geçtiğini tanıyorum.
           </p>
         </div>
 
@@ -43,22 +42,20 @@ export const About: React.FC = () => {
           {/* Left Column: Personal Narrative */}
           <div>
             <h3 style={{ fontSize: '1.75rem', marginBottom: '1.25rem', color: 'var(--text-main)' }}>
-              Merhaba, Ben Dyt. Sena Alkan
+              Merhaba, ben Emir Yontar
             </h3>
             <p style={{ color: 'var(--text-muted)', lineHeight: 1.8, marginBottom: '1.25rem', fontSize: '1.025rem' }}>
-              Hacettepe Üniversitesi Beslenme ve Diyetetik Bölümü’nden onur derecesiyle mezun olduktan sonra, 
-              klasik diyet listelerinin neden %85 oranında başarısız olduğunu araştırmaya adandım. 
-              Gördüm ki insanlar iradesiz değildi; aksine <strong>biyolojilerine ve ruhlarına aykırı</strong> kurallarla savaşıyorlardı.
+              Hacettepe Üniversitesi Beslenme ve Diyetetik Bölümü’nden mezun oldum ve sekiz yıldır danışanlarla çalışıyorum.
+              Bu sürede gördüğüm şey şu: çoğu insan iradesiz değil, sadece <strong>hayatına uymayan listelerle</strong> uğraşıyor.
             </p>
             <p style={{ color: 'var(--text-muted)', lineHeight: 1.8, marginBottom: '1.5rem', fontSize: '1.025rem' }}>
-              İngiltere’de <em>Fonksiyonel Beslenme ve Bağırsak-Beyin Aksı</em> üzerine aldığım ileri klinik eğitimlerin ardından, 
-              kliniğimde <strong>MoodNutri™ (Duygu Odaklı Beslenme)</strong> modelini geliştirdim. 
-              Amacım; tartıdaki rakamın ötesine geçerek sizi yiyeceklerle barıştırmak, 
-              enerjinizi geri kazandırmak ve ömür boyu sürecek bir hafiflik inşa etmektir.
+              Görüşmelerde iş temponuzu, uykunuzu, ne zaman acıktığınızı ve hangi yemekleri sevdiğinizi konuşuruz.
+              Planı buna göre hazırlar, her hafta birlikte güncelleriz. Kan tahlili gerektiren durumlarda
+              hekiminizle uyumlu çalışırım; <strong>duygusal yeme</strong> ve <strong>sindirim sorunları</strong> en sık ilgilendiğim konular.
             </p>
 
             {/* Credentials Badges */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', marginTop: '1.5rem' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', marginTop: '1.5rem' }}>
               <div 
                 className="glass-panel"
                 style={{
@@ -69,9 +66,9 @@ export const About: React.FC = () => {
                   backgroundColor: 'var(--bg-surface)'
                 }}
               >
-                <Award size={24} color="var(--color-primary)" />
+                <Award size={24} color="var(--color-primary-text)" />
                 <div>
-                  <div style={{ fontWeight: 700, fontSize: '0.9rem', color: 'var(--text-main)' }}>Hacettepe Üniv.</div>
+                  <div style={{ fontWeight: 700, fontSize: '0.9rem', color: 'var(--text-main)' }}>Hacettepe Üniversitesi</div>
                   <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Beslenme ve Diyetetik</div>
                 </div>
               </div>
@@ -88,8 +85,8 @@ export const About: React.FC = () => {
               >
                 <BookOpen size={24} color="var(--color-accent)" />
                 <div>
-                  <div style={{ fontWeight: 700, fontSize: '0.9rem', color: 'var(--text-main)' }}>Fonksiyonel Tıp</div>
-                  <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Mikrobiyota Uzmanlığı</div>
+                  <div style={{ fontWeight: 700, fontSize: '0.9rem', color: 'var(--text-main)' }}>Sporcu Beslenmesi</div>
+                  <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Sertifika Programı</div>
                 </div>
               </div>
             </div>
@@ -106,8 +103,8 @@ export const About: React.FC = () => {
               }}
             >
               <img 
-                src="./healthy_bowl.jpg" 
-                alt="Bütünsel ve Şefkatli Beslenme Tabağı"
+                src="./saglikli-tabak.jpg" 
+                alt="Avokado, yumurta ve sebzelerden oluşan bir tabak"
                 style={{
                   width: '100%',
                   height: '420px',
@@ -133,9 +130,9 @@ export const About: React.FC = () => {
                 gap: '1rem'
               }}
             >
-              <HeartHandshake size={32} color="var(--color-primary)" style={{ flexShrink: 0 }} />
+              <HeartHandshake size={32} color="var(--color-primary-text)" style={{ flexShrink: 0 }} />
               <div style={{ fontSize: '0.9rem', color: 'var(--text-main)', fontStyle: 'italic', lineHeight: 1.5 }}>
-                "Sizi kalıplara sokan diyetler değil; sizin yaşamınıza uyum sağlayan beslenme özgürleştirir."
+                Planınızda evde pişen yemekler, dışarıda yediğiniz günler ve sevdiğiniz tatlılar da var.
               </div>
             </div>
           </div>
@@ -143,7 +140,7 @@ export const About: React.FC = () => {
 
         {/* Interactive Comparison Module: Old Diet vs. Holistic Nutrition */}
         <div 
-          className="glass-panel"
+          className="glass-panel panel-pad"
           style={{
             padding: '2.5rem',
             backgroundColor: 'var(--bg-surface)',
@@ -152,20 +149,22 @@ export const About: React.FC = () => {
           }}
         >
           <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
-            <div style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--color-primary)', letterSpacing: '0.05em', marginBottom: '0.5rem' }}>
-              FELSEFEMİZİN FARKI
+            <div style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--color-primary-text)', letterSpacing: '0.05em', marginBottom: '0.5rem' }}>
+              YAKLAŞIMIM
             </div>
             <h3 style={{ fontSize: '1.85rem', marginBottom: '1rem' }}>
-              Neden Bizimle Başarıya Ulaşıyorsunuz?
+              Şok diyetlerden farkı ne?
             </h3>
             <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem' }}>
-              Aşağıdaki iki yaklaşımı karşılaştırarak aradaki farkı keşfedin:
+              İki yaklaşımı yan yana görün:
             </p>
 
             {/* Toggle Controls */}
             <div 
               style={{
                 display: 'inline-flex',
+                flexWrap: 'wrap',
+                justifyContent: 'center',
                 background: 'var(--bg-subtle)',
                 padding: '0.4rem',
                 borderRadius: 'var(--radius-full)',
@@ -190,8 +189,8 @@ export const About: React.FC = () => {
                   transition: 'all 0.25s ease'
                 }}
               >
-                <Sparkles size={16} />
-                <span>Bütünsel & Sezgisel Yaklaşımımız (Bizim Yolumuz)</span>
+                <CheckCircle size={16} />
+                <span>Benim yaklaşımım</span>
               </button>
 
               <button
@@ -212,7 +211,7 @@ export const About: React.FC = () => {
                 }}
               >
                 <XCircle size={16} />
-                <span>Eski Usul Kısıtlayıcı Diyetler (Geçici Çözüm)</span>
+                <span>Şok diyetler</span>
               </button>
             </div>
           </div>
@@ -229,28 +228,28 @@ export const About: React.FC = () => {
             >
               <div style={{ padding: '1.5rem', borderRadius: '18px', backgroundColor: 'var(--color-primary-light)', border: '1px solid rgba(45, 106, 79, 0.2)' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', marginBottom: '0.75rem' }}>
-                  <CheckCircle size={22} color="var(--color-primary)" />
-                  <h4 style={{ fontSize: '1.1rem', color: 'var(--color-primary)' }}>Biyokimyasal Kök Neden Analizi</h4>
+                  <CheckCircle size={22} color="var(--color-primary-text)" />
+                  <h4 style={{ fontSize: '1.1rem', color: 'var(--color-primary-text)' }}>Önce sizi tanıyorum</h4>
                 </div>
                 <p style={{ fontSize: '0.925rem', color: 'var(--text-main)', lineHeight: 1.6 }}>
-                  Sadece kilonuza değil; insülin direnciniz, bağırsak mikrobiyotanız, tiroid hormonlarınız ve uyku kalitenize göre kişiye özel planlama yapılır.
+                  Kilonuzla birlikte tahlilleriniz, uykunuz, iş saatleriniz ve yemek alışkanlıklarınız da planın bir parçası.
                 </p>
               </div>
 
               <div style={{ padding: '1.5rem', borderRadius: '18px', backgroundColor: 'var(--color-primary-light)', border: '1px solid rgba(45, 106, 79, 0.2)' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', marginBottom: '0.75rem' }}>
-                  <CheckCircle size={22} color="var(--color-primary)" />
-                  <h4 style={{ fontSize: '1.1rem', color: 'var(--color-primary)' }}>MoodNutri™ Duygu Durumu Yönetimi</h4>
+                  <CheckCircle size={22} color="var(--color-primary-text)" />
+                  <h4 style={{ fontSize: '1.1rem', color: 'var(--color-primary-text)' }}>Duygusal yemeyi konuşuyoruz</h4>
                 </div>
                 <p style={{ fontSize: '0.925rem', color: 'var(--text-main)', lineHeight: 1.6 }}>
-                  Stresli veya üzgün olduğunuzda buzdolabına yönelmenin biyokimyasal sebebini çözüyor; açlığınızı değil duygularınızı yönetmeyi öğretiyoruz.
+                  Stresli günlerde neden mutfağa yöneldiğinizi birlikte buluyor, o anlar için uygulanabilir alternatifler belirliyoruz.
                 </p>
               </div>
 
               <div style={{ padding: '1.5rem', borderRadius: '18px', backgroundColor: 'var(--color-primary-light)', border: '1px solid rgba(45, 106, 79, 0.2)' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', marginBottom: '0.75rem' }}>
-                  <CheckCircle size={22} color="var(--color-primary)" />
-                  <h4 style={{ fontSize: '1.1rem', color: 'var(--color-primary)' }}>Yasak Yok, Kalıcı Alışkanlık Var</h4>
+                  <CheckCircle size={22} color="var(--color-primary-text)" />
+                  <h4 style={{ fontSize: '1.1rem', color: 'var(--color-primary-text)' }}>Yasak listesi yok</h4>
                 </div>
                 <p style={{ fontSize: '0.925rem', color: 'var(--text-main)', lineHeight: 1.6 }}>
                   Sosyal hayatınızdan kopmadan, sevdiğiniz tatlıyı veya akşam yemeğini suçluluk duymadan dengelemeyi öğrenirsiniz.
@@ -269,17 +268,17 @@ export const About: React.FC = () => {
               <div style={{ padding: '1.5rem', borderRadius: '18px', backgroundColor: '#FDF0ED', border: '1px solid rgba(224, 122, 95, 0.25)' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', marginBottom: '0.75rem' }}>
                   <XCircle size={22} color="#C9664C" />
-                  <h4 style={{ fontSize: '1.1rem', color: '#943822' }}>Şok Açlık & Yavaşlayan Metabolizma</h4>
+                  <h4 style={{ fontSize: '1.1rem', color: '#943822' }}>Sürekli açlık</h4>
                 </div>
                 <p style={{ fontSize: '0.925rem', color: '#4A251C', lineHeight: 1.6 }}>
-                  Günde 800-1000 kaloriye mahkum edilen beden, hayatta kalma moduna geçerek tiroid hormonunu yavaşlatır ve yağ yakımını durdurur.
+                  Günde 800-1000 kaloriyle uzun süre devam etmek zor; açlık ve yorgunluk bir noktada bırakmanıza yol açıyor.
                 </p>
               </div>
 
               <div style={{ padding: '1.5rem', borderRadius: '18px', backgroundColor: '#FDF0ED', border: '1px solid rgba(224, 122, 95, 0.25)' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', marginBottom: '0.75rem' }}>
                   <XCircle size={22} color="#C9664C" />
-                  <h4 style={{ fontSize: '1.1rem', color: '#943822' }}>Yo-Yo Sendromu (Verip Geri Alma)</h4>
+                  <h4 style={{ fontSize: '1.1rem', color: '#943822' }}>Verip geri almak</h4>
                 </div>
                 <p style={{ fontSize: '0.925rem', color: '#4A251C', lineHeight: 1.6 }}>
                   Diyet bittiği gün verilen kilolar hızla geri alınır; çünkü kişi yeni bir yaşam tarzı değil, geçici bir ceza süreci yaşamıştır.
@@ -289,10 +288,10 @@ export const About: React.FC = () => {
               <div style={{ padding: '1.5rem', borderRadius: '18px', backgroundColor: '#FDF0ED', border: '1px solid rgba(224, 122, 95, 0.25)' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', marginBottom: '0.75rem' }}>
                   <XCircle size={22} color="#C9664C" />
-                  <h4 style={{ fontSize: '1.1rem', color: '#943822' }}>Suçluluk & Yeme Bozukluğu</h4>
+                  <h4 style={{ fontSize: '1.1rem', color: '#943822' }}>Suçluluk ve bırakma</h4>
                 </div>
                 <p style={{ fontSize: '0.925rem', color: '#4A251C', lineHeight: 1.6 }}>
-                  Bir dilim pasta yediğinde "battı balık yan gider" düşüncesiyle tıkınma nöbetlerine girmek, psikolojiyi derinden yaralar.
+                  Bir dilim pasta yüzünden "zaten bozdum" deyip tüm günü bırakmak, şok diyetlerde çok sık görülüyor.
                 </p>
               </div>
             </div>

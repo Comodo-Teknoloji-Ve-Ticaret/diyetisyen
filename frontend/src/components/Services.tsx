@@ -24,15 +24,15 @@ export const Services: React.FC<ServicesProps> = ({ onSelectServiceForBooking })
   const getServiceIcon = (id: string) => {
     switch (id) {
       case 'surdurulebilir-kilo':
-        return <Heart size={24} color="var(--color-primary)" />;
+        return <Heart size={24} color="var(--color-primary-text)" />;
       case 'fonksiyonel-tip':
         return <Stethoscope size={24} color="var(--color-teal)" />;
       case 'sporcu-performans':
         return <Flame size={24} color="var(--color-accent)" />;
       case 'moodnutri-vip':
-        return <Smile size={24} color="#8338EC" />;
+        return <Smile size={24} color="var(--color-teal)" />;
       default:
-        return <Sparkles size={24} color="var(--color-primary)" />;
+        return <Sparkles size={24} color="var(--color-primary-text)" />;
     }
   };
 
@@ -42,30 +42,24 @@ export const Services: React.FC<ServicesProps> = ({ onSelectServiceForBooking })
         {/* Section Header */}
         <div style={{ textAlign: 'center', maxWidth: '740px', margin: '0 auto 3.5rem auto' }}>
           <div className="section-tag">
-            <Sparkles size={16} />
-            <span>Kişiselleştirilmiş Klinik Programlar</span>
+            <Clock size={16} />
+            <span>Programlar</span>
           </div>
           <h2 className="section-title">
-            Tek Bir Kalıp Herkese Uymaz;{' '}
-            <span style={{ color: 'var(--color-primary)' }}>Sizin Yaşamınıza Özel Çözümler</span>
+            Hedefinize göre{' '}
+            <span style={{ color: 'var(--color-primary-text)' }}>dört program</span>
           </h2>
           <p className="section-subtitle" style={{ margin: '0 auto' }}>
-            Haftalık takip, 7/24 WhatsApp danışmanlığı, kan tahlili değerlendirmesi ve özel danışan paneli erişimi içeren kanıta dayalı programlarımız.
+            Tüm programlarda birebir görüşmeler, tahlil değerlendirmesi ve danışan paneli üzerinden takip var. Hangisinin size uygun olduğundan emin değilseniz ön görüşmede birlikte karar verelim.
           </p>
         </div>
 
         {/* Services Grid */}
-        <div 
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-            gap: '2rem'
-          }}
-        >
+        <div className="services-grid">
           {SERVICES_DATA.map((service) => (
             <div
               key={service.id}
-              className="glass-panel"
+              className="glass-panel panel-pad"
               style={{
                 padding: '2.25rem',
                 backgroundColor: 'var(--bg-surface)',
@@ -74,9 +68,7 @@ export const Services: React.FC<ServicesProps> = ({ onSelectServiceForBooking })
                 flexDirection: 'column',
                 justifyContent: 'space-between',
                 transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-                border: service.id === 'moodnutri-vip' 
-                  ? '2px solid rgba(131, 56, 236, 0.4)' 
-                  : (service.id === 'surdurulebilir-kilo' ? '2px solid rgba(45, 106, 79, 0.3)' : '1px solid var(--border-light)')
+                border: service.id === 'surdurulebilir-kilo' ? '2px solid rgba(45, 106, 79, 0.3)' : '1px solid var(--border-light)'
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-6px)';
@@ -110,8 +102,8 @@ export const Services: React.FC<ServicesProps> = ({ onSelectServiceForBooking })
                         fontWeight: 700,
                         padding: '0.35rem 0.8rem',
                         borderRadius: 'var(--radius-full)',
-                        backgroundColor: service.id === 'moodnutri-vip' ? '#F3E8FF' : 'var(--color-primary-light)',
-                        color: service.id === 'moodnutri-vip' ? '#8338EC' : 'var(--color-primary)',
+                        backgroundColor: 'var(--color-primary-light)',
+                        color: 'var(--color-primary-text)',
                       }}
                     >
                       {service.badge}
@@ -132,14 +124,14 @@ export const Services: React.FC<ServicesProps> = ({ onSelectServiceForBooking })
 
                 {/* Duration indicator */}
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.45rem', fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '1.25rem' }}>
-                  <Clock size={16} color="var(--color-primary)" />
+                  <Clock size={16} color="var(--color-primary-text)" />
                   <span>{service.duration}</span>
                 </div>
 
                 {/* Feature Highlights */}
                 <div style={{ borderTop: '1px solid var(--border-subtle)', paddingTop: '1.25rem', marginBottom: '1.5rem' }}>
                   <div style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--text-main)', marginBottom: '0.75rem', letterSpacing: '0.04em' }}>
-                    PROGRAM İÇERİĞİ:
+                    PROGRAMDA NELER VAR
                   </div>
                   <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.55rem' }}>
                     {service.features.slice(0, 3).map((feat, idx) => (
@@ -192,7 +184,7 @@ export const Services: React.FC<ServicesProps> = ({ onSelectServiceForBooking })
           onClick={() => setSelectedService(null)}
         >
           <div 
-            className="glass-panel"
+            className="glass-panel panel-pad"
             style={{
               width: '100%',
               maxWidth: '620px',
@@ -236,8 +228,8 @@ export const Services: React.FC<ServicesProps> = ({ onSelectServiceForBooking })
                 {getServiceIcon(selectedService.id)}
               </div>
               <div>
-                <span style={{ fontSize: '0.8rem', color: 'var(--color-primary)', fontWeight: 700 }}>
-                  {selectedService.badge || 'Klinik Protokol'}
+                <span style={{ fontSize: '0.8rem', color: 'var(--color-primary-text)', fontWeight: 700 }}>
+                  {selectedService.badge || 'Program'}
                 </span>
                 <h3 style={{ fontSize: '1.4rem', color: 'var(--text-main)', margin: 0 }}>
                   {selectedService.title}
@@ -254,8 +246,8 @@ export const Services: React.FC<ServicesProps> = ({ onSelectServiceForBooking })
             </p>
 
             <div style={{ backgroundColor: 'var(--bg-subtle)', padding: '1.25rem', borderRadius: '16px', marginBottom: '1.5rem' }}>
-              <div style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--color-primary)', marginBottom: '0.4rem' }}>
-                KİMLER İÇİN EN İDEAL?
+              <div style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--color-primary-text)', marginBottom: '0.4rem' }}>
+                KİMLER İÇİN UYGUN?
               </div>
               <p style={{ fontSize: '0.9rem', color: 'var(--text-main)', margin: 0 }}>
                 {selectedService.idealFor}
@@ -264,12 +256,12 @@ export const Services: React.FC<ServicesProps> = ({ onSelectServiceForBooking })
 
             <div style={{ marginBottom: '2rem' }}>
               <div style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--text-main)', marginBottom: '1rem' }}>
-                PROGRAMA DAHİL OLAN HİZMETLER:
+                PROGRAMA DAHİL OLANLAR
               </div>
               <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '0.65rem' }}>
                 {selectedService.features.map((f, i) => (
                   <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '0.9rem', color: 'var(--text-muted)' }}>
-                    <Check size={18} color="var(--color-primary)" />
+                    <Check size={18} color="var(--color-primary-text)" />
                     <span>{f}</span>
                   </div>
                 ))}

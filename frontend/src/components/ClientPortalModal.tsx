@@ -14,6 +14,12 @@ import {
 
 import { CLINIC_INFO } from '../data/contentData';
 
+// Demo dates are relative to today so the panel never shows stale dates
+const MONTHS_TR = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
+const fmtTr = (d: Date, withYear = false) => `${d.getDate()} ${MONTHS_TR[d.getMonth()]}${withYear ? ' ' + d.getFullYear() : ''}`;
+const START_DATE = (() => { const d = new Date(); d.setDate(d.getDate() - 42); return fmtTr(d, true); })();
+const NEXT_SESSION = (() => { const d = new Date(); do { d.setDate(d.getDate() + 1); } while (d.getDay() !== 4); return fmtTr(d) + ' Perşembe'; })();
+
 interface ClientPortalModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -116,7 +122,7 @@ export const ClientPortalModal: React.FC<ClientPortalModalProps> = ({ isOpen, on
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                color: 'var(--color-primary)',
+                color: 'var(--color-primary-text)',
                 fontWeight: 800,
                 fontSize: '1.25rem'
               }}
@@ -126,7 +132,7 @@ export const ClientPortalModal: React.FC<ClientPortalModalProps> = ({ isOpen, on
             <div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <h2 style={{ fontSize: '1.45rem', margin: 0, color: 'var(--text-main)' }}>
-                  Sena Demirhan
+                  Ayşe Demir
                 </h2>
                 <span 
                   style={{
@@ -135,7 +141,7 @@ export const ClientPortalModal: React.FC<ClientPortalModalProps> = ({ isOpen, on
                     padding: '0.2rem 0.6rem',
                     borderRadius: 'var(--radius-full)',
                     backgroundColor: 'var(--color-secondary-light)',
-                    color: 'var(--color-primary)'
+                    color: 'var(--color-primary-text)'
                   }}
                 >
                   Aktif Danışan • 3. Hafta
@@ -148,8 +154,8 @@ export const ClientPortalModal: React.FC<ClientPortalModalProps> = ({ isOpen, on
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.825rem', color: 'var(--text-muted)', backgroundColor: 'var(--bg-subtle)', padding: '0.5rem 0.9rem', borderRadius: '12px' }}>
-            <Calendar size={16} color="var(--color-primary)" />
-            <span>Bir Sonraki Seans: <strong>30 Ekim 15:30 (Online)</strong></span>
+            <Calendar size={16} color="var(--color-primary-text)" />
+            <span>Bir Sonraki Seans: <strong>{NEXT_SESSION} 15:30 (Online)</strong></span>
           </div>
         </div>
 
@@ -165,14 +171,14 @@ export const ClientPortalModal: React.FC<ClientPortalModalProps> = ({ isOpen, on
           <div style={{ backgroundColor: 'var(--bg-subtle)', padding: '1.25rem', borderRadius: '18px', border: '1px solid var(--border-light)' }}>
             <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: 600 }}>BAŞLANGIÇ KİLOSU</div>
             <div style={{ fontSize: '1.65rem', fontWeight: 800, color: 'var(--text-main)' }}>72.4 kg</div>
-            <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>12 Ekim 2026</div>
+            <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{START_DATE}</div>
           </div>
 
           <div style={{ backgroundColor: 'var(--bg-subtle)', padding: '1.25rem', borderRadius: '18px', border: '1px solid var(--border-light)' }}>
             <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', fontWeight: 600 }}>GÜNCEL TARTI</div>
-            <div style={{ fontSize: '1.65rem', fontWeight: 800, color: 'var(--color-primary)' }}>68.8 kg</div>
+            <div style={{ fontSize: '1.65rem', fontWeight: 800, color: 'var(--color-primary-text)' }}>68.8 kg</div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.25rem', fontSize: '0.75rem', color: 'var(--color-secondary)', fontWeight: 700 }}>
-              <TrendingDown size={14} /> -3.6 kg Sağlıklı Yağ Kaybı
+              <TrendingDown size={14} /> -3.6 kg
             </div>
           </div>
 
@@ -195,7 +201,7 @@ export const ClientPortalModal: React.FC<ClientPortalModalProps> = ({ isOpen, on
           {/* Today's Calorie & Water Progress */}
           <div style={{ backgroundColor: 'var(--bg-subtle)', padding: '1.5rem', borderRadius: '20px', border: '1px solid var(--border-light)' }}>
             <h4 style={{ fontSize: '1rem', marginBottom: '1.25rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-              <Award size={18} color="var(--color-primary)" />
+              <Award size={18} color="var(--color-primary-text)" />
               Bugünkü Alışkanlık İlerlemesi
             </h4>
 
@@ -228,7 +234,7 @@ export const ClientPortalModal: React.FC<ClientPortalModalProps> = ({ isOpen, on
             </div>
           </div>
 
-          {/* Dyt. Sena's Live Coaching Note */}
+          {/* Dietitian's note */}
           <div 
             style={{
               backgroundColor: 'var(--color-primary-light)',
@@ -242,16 +248,16 @@ export const ClientPortalModal: React.FC<ClientPortalModalProps> = ({ isOpen, on
           >
             <div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem' }}>
-                <Sparkles size={18} color="var(--color-primary)" />
-                <div style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--color-primary)' }}>
-                  Dyt. Sena Alkan’ın Günlük Koçluk Notu
+                <Sparkles size={18} color="var(--color-primary-text)" />
+                <div style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--color-primary-text)' }}>
+                  Dyt. Emir Yontar’ın notu
                 </div>
               </div>
               <p style={{ fontSize: '0.9rem', color: 'var(--text-main)', lineHeight: 1.6, margin: 0, fontStyle: 'italic' }}>
-                "Sena harika gidiyorsun! Dün akşam tatlı krizinde MoodNutri elma-tarçın tarifini uygulaman ve açlık skalasını hatırlaman mükemmel bir adımdı. Bugün öğle yemeğindeki kinoa salatana 1 tatlı kaşığı zeytinyağını çiğ eklemeyi unutma."
+                "Bu hafta akşam atıştırmalarını azaltman çok iyi oldu. Bugün öğle yemeğindeki salatana 1 tatlı kaşığı zeytinyağı eklemeyi unutma; perşembe görüşmemizde tartı sonucuna birlikte bakarız."
               </p>
             </div>
-            <div style={{ fontSize: '0.75rem', color: 'var(--color-primary)', fontWeight: 600, marginTop: '0.75rem' }}>
+            <div style={{ fontSize: '0.75rem', color: 'var(--color-primary-text)', fontWeight: 600, marginTop: '0.75rem' }}>
               Bugün 09:15’te güncellendi
             </div>
           </div>
@@ -293,7 +299,7 @@ export const ClientPortalModal: React.FC<ClientPortalModalProps> = ({ isOpen, on
                   }}
                 >
                   {isChecked ? (
-                    <CheckCircle2 size={24} color="var(--color-primary)" style={{ flexShrink: 0 }} />
+                    <CheckCircle2 size={24} color="var(--color-primary-text)" style={{ flexShrink: 0 }} />
                   ) : (
                     <Circle size={24} color="var(--text-light)" style={{ flexShrink: 0 }} />
                   )}
@@ -322,15 +328,15 @@ export const ClientPortalModal: React.FC<ClientPortalModalProps> = ({ isOpen, on
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.75rem' }}>
-            <MessageSquare size={18} color="var(--color-primary)" />
+            <MessageSquare size={18} color="var(--color-primary-text)" />
             <h4 style={{ fontSize: '1rem', color: 'var(--text-main)', margin: 0 }}>
               Diyetisyeninize Hızlı Soru Sorun
             </h4>
           </div>
 
           {questionSent ? (
-            <div style={{ padding: '0.85rem', backgroundColor: 'var(--color-primary-light)', color: 'var(--color-primary)', borderRadius: '12px', fontSize: '0.9rem', fontWeight: 600 }}>
-              ✓ Sorunuz Dyt. Sena Alkan’a iletildi. WhatsApp üzerinden 30 dakika içinde yanıtlanacaktır.
+            <div style={{ padding: '0.85rem', backgroundColor: 'var(--color-primary-light)', color: 'var(--color-primary-text)', borderRadius: '12px', fontSize: '0.9rem', fontWeight: 600 }}>
+              Sorunuz Dyt. Emir Yontar’a iletildi. Mesai saatleri içinde WhatsApp üzerinden yanıtlanacaktır.
             </div>
           ) : (
             <form onSubmit={handleSendQuestion} style={{ display: 'flex', gap: '0.75rem' }}>

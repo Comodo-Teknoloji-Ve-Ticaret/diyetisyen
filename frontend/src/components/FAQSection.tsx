@@ -38,14 +38,14 @@ export const FAQSection: React.FC = () => {
         <div style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto 3.5rem auto' }}>
           <div className="section-tag">
             <HelpCircle size={16} />
-            <span>Merak Edilenler & İletişim</span>
+            <span>SSS & İletişim</span>
           </div>
           <h2 className="section-title">
-            Aklınıza Takılan Sorular &{' '}
-            <span style={{ color: 'var(--color-primary)' }}>Kliniğimize Ulaşın</span>
+            Sık sorulan sorular{' '}
+            <span style={{ color: 'var(--color-primary-text)' }}>ve iletişim</span>
           </h2>
           <p className="section-subtitle" style={{ margin: '0 auto' }}>
-            Sağlıklı bir başlangıç yapmadan önce bilmek istediğiniz her şey şeffaflıkla burada.
+            Cevabını bulamadığınız bir soru varsa formdan ya da WhatsApp'tan yazın, aynı gün dönüş yapıyorum.
           </p>
         </div>
 
@@ -124,7 +124,7 @@ export const FAQSection: React.FC = () => {
           {/* Right Column: Contact & Quick Message */}
           <div>
             <h3 style={{ fontSize: '1.35rem', marginBottom: '1.5rem', color: 'var(--text-main)' }}>
-              Bize Hızlıca Yazın
+              Bana yazın
             </h3>
 
             {/* Quick Contact Form */}
@@ -141,8 +141,8 @@ export const FAQSection: React.FC = () => {
             >
               {submitted ? (
                 <div style={{ textAlign: 'center', padding: '1.5rem 0' }}>
-                  <CheckCircle2 size={44} color="var(--color-primary)" style={{ margin: '0 auto 0.75rem auto' }} />
-                  <h4 style={{ fontSize: '1.15rem', color: 'var(--color-primary)', marginBottom: '0.35rem' }}>
+                  <CheckCircle2 size={44} color="var(--color-primary-text)" style={{ margin: '0 auto 0.75rem auto' }} />
+                  <h4 style={{ fontSize: '1.15rem', color: 'var(--color-primary-text)', marginBottom: '0.35rem' }}>
                     Mesajınız Alındı!
                   </h4>
                   <p style={{ fontSize: '0.875rem', color: 'var(--text-muted)', margin: 0 }}>
@@ -250,20 +250,20 @@ export const FAQSection: React.FC = () => {
               >
                 <MessageCircle size={22} />
                 <div>
-                  <div>WhatsApp Hızlı Danışma Hattı</div>
+                  <div>WhatsApp'tan yazın</div>
                   <div style={{ fontSize: '0.75rem', opacity: 0.9, fontWeight: 500 }}>{CLINIC_INFO.whatsapp}</div>
                 </div>
               </a>
 
               <div style={{ padding: '1rem 1.25rem', borderRadius: '16px', backgroundColor: 'var(--bg-surface)', border: '1px solid var(--border-light)', display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
-                <MapPin size={22} color="var(--color-primary)" style={{ flexShrink: 0 }} />
+                <MapPin size={22} color="var(--color-primary-text)" style={{ flexShrink: 0 }} />
                 <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
-                  <strong style={{ color: 'var(--text-main)' }}>Klinik:</strong> {CLINIC_INFO.address}
+                  <strong style={{ color: 'var(--text-main)' }}>Ofis:</strong> {CLINIC_INFO.address}
                 </div>
               </div>
 
               <div style={{ padding: '1rem 1.25rem', borderRadius: '16px', backgroundColor: 'var(--bg-surface)', border: '1px solid var(--border-light)', display: 'flex', alignItems: 'center', gap: '0.85rem' }}>
-                <Clock size={22} color="var(--color-primary)" style={{ flexShrink: 0 }} />
+                <Clock size={22} color="var(--color-primary-text)" style={{ flexShrink: 0 }} />
                 <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
                   <strong style={{ color: 'var(--text-main)' }}>Çalışma Saatleri:</strong> {CLINIC_INFO.workingHours}
                 </div>

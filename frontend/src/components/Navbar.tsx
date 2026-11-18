@@ -7,7 +7,6 @@ import {
   Moon, 
   Menu, 
   X,
-  Sparkles,
   PhoneCall
 } from 'lucide-react';
 import { CLINIC_INFO } from '../data/contentData';
@@ -38,11 +37,11 @@ export const Navbar: React.FC<NavbarProps> = ({
 
   const navLinks = [
     { label: 'Hakkımda', href: '#hakkimda' },
-    { label: 'Hizmetler', href: '#hizmetler' },
-    { label: 'Akıllı Araçlar', href: '#akilli-araclar' },
-    { label: 'MoodNutri™', href: '#moodnutri', highlight: true },
-    { label: 'Danışan Yorumları', href: '#yorumlar' },
-    { label: 'SSS & İletişim', href: '#iletisim' },
+    { label: 'Programlar', href: '#hizmetler' },
+    { label: 'Hesaplayıcı', href: '#akilli-araclar' },
+    { label: 'Duygusal Yeme', href: '#moodnutri' },
+    { label: 'Yorumlar', href: '#yorumlar' },
+    { label: 'İletişim', href: '#iletisim' },
   ];
 
   const handleLinkClick = () => {
@@ -69,9 +68,10 @@ export const Navbar: React.FC<NavbarProps> = ({
     >
       <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         {/* Brand Logo */}
-        <a 
+ <a 
           href="#" 
           style={{ 
+            minWidth: 0,
             display: 'flex', 
             alignItems: 'center', 
             gap: '0.65rem',
@@ -83,7 +83,8 @@ export const Navbar: React.FC<NavbarProps> = ({
               width: '42px',
               height: '42px',
               borderRadius: '12px',
-              background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%)',
+              background: 'var(--color-primary)',
+              flexShrink: 0,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -94,11 +95,11 @@ export const Navbar: React.FC<NavbarProps> = ({
             <Leaf size={22} />
           </div>
           <div>
-            <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 800, fontSize: '1.2rem', color: 'var(--text-main)', lineHeight: 1.1 }}>
+            <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 700, fontSize: '1.15rem', color: 'var(--text-main)', lineHeight: 1.1, whiteSpace: 'nowrap' }}>
               {CLINIC_INFO.name}
             </div>
-            <div style={{ fontSize: '0.75rem', color: 'var(--color-primary)', fontWeight: 600, letterSpacing: '0.04em' }}>
-              BÜTÜNSEL BESLENME KLİNİĞİ
+            <div className="brand-sub" style={{ fontSize: '0.75rem', color: 'var(--color-primary-text)', fontWeight: 600, letterSpacing: '0.04em' }}>
+              DİYETİSYEN
             </div>
           </div>
         </a>
@@ -108,7 +109,7 @@ export const Navbar: React.FC<NavbarProps> = ({
           style={{ 
             display: 'none', 
             alignItems: 'center', 
-            gap: '1.75rem'
+            gap: '1.5rem'
           }}
           className="desktop-nav"
         >
@@ -118,28 +119,28 @@ export const Navbar: React.FC<NavbarProps> = ({
               href={link.href}
               style={{
                 fontSize: '0.925rem',
-                fontWeight: link.highlight ? 700 : 500,
-                color: link.highlight ? 'var(--color-accent)' : 'var(--text-main)',
+                fontWeight: 500,
+                color: 'var(--text-main)',
+                whiteSpace: 'nowrap',
                 transition: 'color 0.2s ease',
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '0.35rem'
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.color = link.highlight ? 'var(--color-accent-hover)' : 'var(--color-primary)';
+                e.currentTarget.style.color = 'var(--color-primary)';
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.color = link.highlight ? 'var(--color-accent)' : 'var(--text-main)';
+                e.currentTarget.style.color = 'var(--text-main)';
               }}
             >
-              {link.highlight && <Sparkles size={14} />}
               {link.label}
             </a>
           ))}
         </nav>
 
         {/* Right Action Buttons */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', flexShrink: 0 }}>
           {/* Theme Toggle */}
           <button
             onClick={toggleTheme}
@@ -159,13 +160,15 @@ export const Navbar: React.FC<NavbarProps> = ({
             }}
             title={theme === 'dark' ? 'Aydınlık Moda Geç' : 'Karanlık Moda Geç'}
           >
-            {theme === 'dark' ? <Sun size={18} color="#F4A261" /> : <Moon size={18} color="var(--color-primary)" />}
+            {theme === 'dark' ? <Sun size={18} color="#F4A261" /> : <Moon size={18} color="var(--color-primary-text)" />}
           </button>
 
           {/* Client Portal Button */}
           <button
             onClick={onOpenPortal}
             className="btn btn-secondary portal-nav-btn"
+            aria-label="Danışan Girişi"
+            title="Danışan Girişi"
             style={{
               padding: '0.65rem 1.15rem',
               fontSize: '0.875rem',
@@ -173,16 +176,18 @@ export const Navbar: React.FC<NavbarProps> = ({
             }}
           >
             <User size={16} />
-            <span>Danışan Portalı</span>
+            <span>Danışan Girişi</span>
           </button>
 
           {/* Appointment CTA */}
           <button
             onClick={onOpenAppointment}
-            className="btn btn-primary"
+            className="btn btn-primary nav-cta"
+            aria-label="Randevu Al"
             style={{
-              padding: '0.65rem 1.35rem',
-              fontSize: '0.875rem'
+              padding: '0.65rem 1.25rem',
+              fontSize: '0.875rem',
+              whiteSpace: 'nowrap'
             }}
           >
             <Calendar size={16} />
@@ -238,14 +243,13 @@ export const Navbar: React.FC<NavbarProps> = ({
               style={{
                 fontSize: '1rem',
                 fontWeight: 600,
-                color: link.highlight ? 'var(--color-accent)' : 'var(--text-main)',
+                color: 'var(--text-main)',
                 padding: '0.5rem 0',
                 display: 'flex',
                 alignItems: 'center',
                 gap: '0.5rem'
               }}
             >
-              {link.highlight && <Sparkles size={16} />}
               {link.label}
             </a>
           ))}
@@ -259,7 +263,7 @@ export const Navbar: React.FC<NavbarProps> = ({
             style={{ width: '100%', justifyContent: 'center' }}
           >
             <User size={18} />
-            Danışan Portalı Demo Girişi
+            Danışan Girişi
           </button>
           <a
             href={`tel:${CLINIC_INFO.phone.replace(/[^0-9]/g, '')}`}
@@ -273,12 +277,23 @@ export const Navbar: React.FC<NavbarProps> = ({
       )}
 
       <style>{`
-        @media (min-width: 992px) {
+        @media (min-width: 1180px) {
+          .portal-nav-btn { display: inline-flex !important; }
+        }
+        @media (min-width: 1180px) and (max-width: 1319px) {
+          .portal-nav-btn { padding: 0.65rem !important; }
+          .portal-nav-btn span { display: none; }
+        }
+        @media (max-width: 560px) {
+          .nav-cta { width: 40px; height: 40px; padding: 0 !important; }
+          .nav-cta span { display: none; }
+        }
+        @media (max-width: 420px) {
+          .brand-sub { display: none; }
+        }
+        @media (min-width: 1180px) {
           .desktop-nav {
             display: flex !important;
-          }
-          .portal-nav-btn {
-            display: inline-flex !important;
           }
           .mobile-menu-trigger {
             display: none !important;

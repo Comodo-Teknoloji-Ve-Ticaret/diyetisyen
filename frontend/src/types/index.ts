@@ -93,7 +93,7 @@ export interface TestimonialItem {
   quote: string;
   timeframe: string;
   tags: string[];
-  avatar: string;
+  avatar?: string;
 }
 
 export interface FAQItem {

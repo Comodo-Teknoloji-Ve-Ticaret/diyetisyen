@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import confetti from 'canvas-confetti';
 import { 
   Calculator, 
@@ -6,7 +6,11 @@ import {
   Flame, 
   Activity, 
   RotateCcw, 
-  Sparkles,
+  Check,
+  Save,
+  GlassWater,
+  Coffee,
+  Milk,
   Info,
   TrendingDown,
   TrendingUp,
@@ -39,47 +43,35 @@ export const SmartTools: React.FC<SmartToolsProps> = ({ onSaveToPortal }) => {
     goal: 'lose_weight'
   });
 
-  const [calcResult, setCalcResult] = useState<CalorieCalculatorResult>(() => 
-    calculateNutrition({
-      age: 28,
-      gender: 'female',
-      height: 168,
-      weight: 65,
-      activityLevel: 'moderate',
-      goal: 'lose_weight'
-    })
-  );
+  // Derived directly from the inputs — no effect needed
+  const calcResult: CalorieCalculatorResult = useMemo(() => calculateNutrition(calcInput), [calcInput]);
 
   const [savedToPortalMessage, setSavedToPortalMessage] = useState(false);
 
-  // Recalculate whenever inputs change
-  useEffect(() => {
-    const res = calculateNutrition(calcInput);
-    setCalcResult(res);
-  }, [calcInput]);
 
   // Water Tracker State
-  const [waterGoal, setWaterGoal] = useState<number>(2400); // ml
+  const [waterGoal, setWaterGoal] = useState<number>(() => {
+    const saved = Number(localStorage.getItem('nutri_saved_water_goal'));
+    return saved > 0 ? Math.round(saved) : 2400;
+  }); // ml
   const [currentWater, setCurrentWater] = useState<number>(() => {
     const saved = localStorage.getItem('nutri_water_amount');
     return saved ? parseInt(saved, 10) : 1000;
   });
-  const [goalReachedCelebrated, setGoalReachedCelebrated] = useState(false);
+  // Don't fire confetti on page load if the stored amount already met the goal earlier
+  const [goalReachedCelebrated, setGoalReachedCelebrated] = useState(() => currentWater >= waterGoal);
 
   useEffect(() => {
     localStorage.setItem('nutri_water_amount', currentWater.toString());
-    if (currentWater >= waterGoal && !goalReachedCelebrated && currentWater > 0) {
-      setGoalReachedCelebrated(true);
-      confetti({
-        particleCount: 80,
-        spread: 70,
-        origin: { y: 0.6 }
-      });
-    }
-  }, [currentWater, waterGoal, goalReachedCelebrated]);
+  }, [currentWater]);
 
   const addWater = (amount: number) => {
-    setCurrentWater(prev => Math.min(prev + amount, 4500));
+    const next = Math.min(currentWater + amount, 4500);
+    setCurrentWater(next);
+    if (next >= waterGoal && !goalReachedCelebrated) {
+      setGoalReachedCelebrated(true);
+      confetti({ particleCount: 80, spread: 70, origin: { y: 0.6 } });
+    }
   };
 
   const resetWater = () => {
@@ -108,18 +100,19 @@ export const SmartTools: React.FC<SmartToolsProps> = ({ onSaveToPortal }) => {
         <div style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto 3rem auto' }}>
           <div className="section-tag">
             <Calculator size={16} />
-            <span>Bilimsel & İnteraktif Modüller</span>
+            <span>Hesaplayıcı</span>
           </div>
           <h2 className="section-title">
-            Bedeninizi Tanıyın:{' '}
-            <span style={{ color: 'var(--color-primary)' }}>Akıllı Beslenme & Hidrasyon Asistanı</span>
+            Günlük kalori ve{' '}
+            <span style={{ color: 'var(--color-primary-text)' }}>su ihtiyacınızı hesaplayın</span>
           </h2>
           <p className="section-subtitle" style={{ margin: '0 auto' }}>
-            Ezbere diyet listeleri yerine, Mifflin-St Jeor formülüyle metabolizma hızınızı ve su ihtiyacınızı saniyeler içinde öğrenin.
+            Mifflin-St Jeor formülüyle yaklaşık bir değer verir. Kesin ihtiyacınızı görüşmede ölçümlerinizle birlikte belirleriz.
           </p>
 
           {/* Tool Tab Switcher */}
           <div 
+            className="tab-switch"
             style={{
               display: 'inline-flex',
               background: 'var(--bg-surface)',
@@ -148,7 +141,7 @@ export const SmartTools: React.FC<SmartToolsProps> = ({ onSaveToPortal }) => {
               }}
             >
               <Flame size={18} />
-              <span>Akıllı Kalori & Makro Hesaplayıcı</span>
+              <span>Kalori & Makro</span>
             </button>
 
             <button
@@ -169,7 +162,7 @@ export const SmartTools: React.FC<SmartToolsProps> = ({ onSaveToPortal }) => {
               }}
             >
               <Droplet size={18} />
-              <span>Dijital Su Takip Asistanı</span>
+              <span>Su Takibi</span>
             </button>
           </div>
         </div>
@@ -177,29 +170,26 @@ export const SmartTools: React.FC<SmartToolsProps> = ({ onSaveToPortal }) => {
         {/* TOOL 1: CALORIE & MACRO CALCULATOR */}
         {activeTool === 'calorie' && (
           <div 
-            className="glass-panel"
+            className="glass-panel panel-pad stack-on-mobile"
             style={{
               padding: '2.5rem',
               backgroundColor: 'var(--bg-surface)',
               borderRadius: '28px',
               boxShadow: 'var(--shadow-md)',
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-              gap: '3rem',
               animation: 'fadeIn 0.3s ease'
             }}
           >
             {/* Form Controls */}
             <div>
               <h3 style={{ fontSize: '1.35rem', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <Activity size={20} color="var(--color-primary)" />
-                Bireysel Bilgilerinizi Girin
+                <Activity size={20} color="var(--color-primary-text)" />
+                Bilgileriniz
               </h3>
 
               {/* Gender selector */}
               <div style={{ marginBottom: '1.25rem' }}>
                 <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 600, color: 'var(--text-muted)', marginBottom: '0.5rem' }}>
-                  Biyolojik Cinsiyet
+                  Cinsiyet
                 </label>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.75rem' }}>
                   {(['female', 'male'] as Gender[]).map((g) => (
@@ -218,7 +208,7 @@ export const SmartTools: React.FC<SmartToolsProps> = ({ onSaveToPortal }) => {
                         transition: 'all 0.2s ease'
                       }}
                     >
-                      {g === 'female' ? 'Kadın (BMR -161)' : 'Erkek (BMR +5)'}
+                      {g === 'female' ? 'Kadın' : 'Erkek'}
                     </button>
                   ))}
                 </div>
@@ -364,7 +354,8 @@ export const SmartTools: React.FC<SmartToolsProps> = ({ onSaveToPortal }) => {
             </div>
 
             {/* Live Calculation Results Card */}
-            <div 
+            <div
+              className="panel-pad"
               style={{
                 backgroundColor: 'var(--bg-subtle)',
                 borderRadius: '22px',
@@ -376,12 +367,12 @@ export const SmartTools: React.FC<SmartToolsProps> = ({ onSaveToPortal }) => {
               }}
             >
               <div>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.25rem' }}>
-                  <span style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--color-primary)', letterSpacing: '0.04em' }}>
-                    KİŞİYE ÖZEL HESAPLAMA SONUCU
+                <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '0.25rem 1rem', marginBottom: '1.25rem' }}>
+                  <span style={{ fontSize: '0.8rem', fontWeight: 700, color: 'var(--color-primary-text)', letterSpacing: '0.04em' }}>
+                    SONUÇ
                   </span>
                   <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>
-                    Mifflin-St Jeor Standardı
+                    Mifflin-St Jeor formülü
                   </span>
                 </div>
 
@@ -398,13 +389,13 @@ export const SmartTools: React.FC<SmartToolsProps> = ({ onSaveToPortal }) => {
                   }}
                 >
                   <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', fontWeight: 600 }}>
-                    Hedef Günlük Kalori Alımı
+                    Günlük hedef kalori
                   </div>
-                  <div style={{ fontSize: '3rem', fontWeight: 800, color: 'var(--color-primary)', fontFamily: 'var(--font-heading)', lineHeight: 1.1 }}>
+                  <div style={{ fontSize: 'clamp(2.25rem, 8vw, 3rem)', fontWeight: 800, color: 'var(--color-primary-text)', fontFamily: 'var(--font-heading)', lineHeight: 1.1 }}>
                     {calcResult.targetCalories}{' '}
                     <span style={{ fontSize: '1.25rem', fontWeight: 600 }}>kcal / gün</span>
                   </div>
-                  <div style={{ display: 'flex', justifyContent: 'center', gap: '1.5rem', marginTop: '0.75rem', fontSize: '0.85rem', color: 'var(--text-muted)' }}>
+                  <div className="calorie-meta" style={{ marginTop: '0.75rem', fontSize: '0.85rem', color: 'var(--text-muted)' }}>
                     <span>Bazal Hız (BMR): <strong>{calcResult.bmr} kcal</strong></span>
                     <span>Toplam Harcama (TDEE): <strong>{calcResult.tdee} kcal</strong></span>
                   </div>
@@ -413,7 +404,7 @@ export const SmartTools: React.FC<SmartToolsProps> = ({ onSaveToPortal }) => {
                 {/* Macro Breakdown */}
                 <div style={{ marginBottom: '1.5rem' }}>
                   <div style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--text-main)', marginBottom: '0.75rem' }}>
-                    GÜNLÜK HEDEF MAKRO DAĞILIMI
+                    MAKRO DAĞILIMI
                   </div>
 
                   {/* Multi-colored bar */}
@@ -424,7 +415,7 @@ export const SmartTools: React.FC<SmartToolsProps> = ({ onSaveToPortal }) => {
                   </div>
 
                   {/* 3 Macro Cards */}
-                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.65rem' }}>
+                  <div className="macro-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: '0.65rem' }}>
                     <div style={{ backgroundColor: 'var(--bg-surface)', padding: '0.75rem', borderRadius: '12px', textAlign: 'center', border: '1px solid var(--border-subtle)' }}>
                       <div style={{ fontSize: '0.75rem', color: '#457B9D', fontWeight: 700 }}>PROTEİN</div>
                       <div style={{ fontSize: '1.25rem', fontWeight: 800 }}>{calcResult.macros.proteinGrams}g</div>
@@ -432,13 +423,13 @@ export const SmartTools: React.FC<SmartToolsProps> = ({ onSaveToPortal }) => {
                     </div>
 
                     <div style={{ backgroundColor: 'var(--bg-surface)', padding: '0.75rem', borderRadius: '12px', textAlign: 'center', border: '1px solid var(--border-subtle)' }}>
-                      <div style={{ fontSize: '0.75rem', color: '#F4A261', fontWeight: 700 }}>KARBONHİDRAT</div>
+                      <div style={{ fontSize: '0.75rem', color: '#C9772E', fontWeight: 700 }}>KARBONHİDRAT</div>
                       <div style={{ fontSize: '1.25rem', fontWeight: 800 }}>{calcResult.macros.carbGrams}g</div>
                       <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>%{calcResult.macros.carbPercent}</div>
                     </div>
 
                     <div style={{ backgroundColor: 'var(--bg-surface)', padding: '0.75rem', borderRadius: '12px', textAlign: 'center', border: '1px solid var(--border-subtle)' }}>
-                      <div style={{ fontSize: '0.75rem', color: '#E07A5F', fontWeight: 700 }}>SAĞLIKLI YAĞ</div>
+                      <div style={{ fontSize: '0.75rem', color: '#C9664C', fontWeight: 700 }}>YAĞ</div>
                       <div style={{ fontSize: '1.25rem', fontWeight: 800 }}>{calcResult.macros.fatGrams}g</div>
                       <div style={{ fontSize: '0.7rem', color: 'var(--text-muted)' }}>%{calcResult.macros.fatPercent}</div>
                     </div>
@@ -447,9 +438,9 @@ export const SmartTools: React.FC<SmartToolsProps> = ({ onSaveToPortal }) => {
 
                 {/* Dietitian Tip & Water need */}
                 <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.65rem', backgroundColor: 'var(--bg-surface)', padding: '0.85rem', borderRadius: '14px', marginBottom: '1.25rem', fontSize: '0.825rem', color: 'var(--text-muted)' }}>
-                  <Info size={18} color="var(--color-primary)" style={{ flexShrink: 0, marginTop: '2px' }} />
+                  <Info size={18} color="var(--color-primary-text)" style={{ flexShrink: 0, marginTop: '2px' }} />
                   <div>
-                    <strong>Klinik İpucu:</strong> {calcResult.tip}{' '}
+                    <strong>Not:</strong> {calcResult.tip}{' '}
                     <span>Önerilen günlük su miktarı: <strong>{calcResult.waterNeedLiters} Litre</strong>.</span>
                   </div>
                 </div>
@@ -462,8 +453,8 @@ export const SmartTools: React.FC<SmartToolsProps> = ({ onSaveToPortal }) => {
                   className="btn btn-primary"
                   style={{ width: '100%', fontSize: '0.925rem' }}
                 >
-                  <Sparkles size={16} />
-                  <span>{savedToPortalMessage ? '✓ Hedefler Danışan Paneline Kaydedildi!' : 'Bu Planı Danışan Paneline Aktar'}</span>
+                  {savedToPortalMessage ? <Check size={16} /> : <Save size={16} />}
+                  <span>{savedToPortalMessage ? 'Danışan paneline kaydedildi' : 'Danışan paneline kaydet'}</span>
                 </button>
               </div>
             </div>
@@ -473,15 +464,12 @@ export const SmartTools: React.FC<SmartToolsProps> = ({ onSaveToPortal }) => {
         {/* TOOL 2: DIGITAL WATER TRACKER */}
         {activeTool === 'water' && (
           <div 
-            className="glass-panel"
+            className="glass-panel panel-pad stack-on-mobile"
             style={{
               padding: '2.5rem',
               backgroundColor: 'var(--bg-surface)',
               borderRadius: '28px',
               boxShadow: 'var(--shadow-md)',
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-              gap: '3rem',
               alignItems: 'center',
               animation: 'fadeIn 0.3s ease'
             }}
@@ -555,7 +543,7 @@ export const SmartTools: React.FC<SmartToolsProps> = ({ onSaveToPortal }) => {
                 </div>
                 <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
                   {waterPercentage >= 100 
-                    ? '🎉 Tebrikler! Günlük hidrasyon hedefinize ulaştınız.' 
+                    ? 'Tebrikler, bugünkü hedefinize ulaştınız.' 
                     : `Hedefe kalan: ${Math.max(0, waterGoal - currentWater)} ml`}
                 </div>
               </div>
@@ -565,11 +553,11 @@ export const SmartTools: React.FC<SmartToolsProps> = ({ onSaveToPortal }) => {
             <div>
               <h3 style={{ fontSize: '1.35rem', marginBottom: '0.75rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                 <Droplet size={22} color="var(--color-teal)" />
-                Su İçtikçe Tek Tıkla Kaydedin
+                İçtikçe ekleyin
               </h3>
               <p style={{ color: 'var(--text-muted)', fontSize: '0.925rem', marginBottom: '1.75rem', lineHeight: 1.6 }}>
-                Beyninizin %75’i, kaslarınızın %70’i sudur. Yeterli su içmek tokluk hissini destekler, 
-                baş ağrılarını önler ve hücresel yağ yakım hızınızı %30 artırır.
+                Gün boyu yeterli su içmek tokluk hissini destekler ve baş ağrısı ile yorgunluğu azaltabilir.
+                Hedefiniz kilonuza göre hesaplanır; hesaplayıcıdan kaydederseniz otomatik güncellenir.
               </p>
 
               {/* Quick Add Buttons */}
@@ -599,7 +587,7 @@ export const SmartTools: React.FC<SmartToolsProps> = ({ onSaveToPortal }) => {
                     e.currentTarget.style.borderColor = 'var(--border-light)';
                   }}
                 >
-                  <span style={{ fontSize: '1.4rem' }}>🥛</span>
+                  <GlassWater size={22} color="var(--color-teal)" />
                   <div style={{ textAlign: 'left' }}>
                     <div style={{ fontSize: '0.95rem' }}>+250 ml Ekle</div>
                     <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>1 Su Bardağı</div>
@@ -631,7 +619,7 @@ export const SmartTools: React.FC<SmartToolsProps> = ({ onSaveToPortal }) => {
                     e.currentTarget.style.borderColor = 'var(--border-light)';
                   }}
                 >
-                  <span style={{ fontSize: '1.4rem' }}>☕</span>
+                  <Coffee size={22} color="var(--color-teal)" />
                   <div style={{ textAlign: 'left' }}>
                     <div style={{ fontSize: '0.95rem' }}>+330 ml Ekle</div>
                     <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Büyük Kupa</div>
@@ -663,7 +651,7 @@ export const SmartTools: React.FC<SmartToolsProps> = ({ onSaveToPortal }) => {
                     e.currentTarget.style.borderColor = 'var(--border-light)';
                   }}
                 >
-                  <span style={{ fontSize: '1.4rem' }}>🍶</span>
+                  <Milk size={22} color="var(--color-teal)" />
                   <div style={{ textAlign: 'left' }}>
                     <div style={{ fontSize: '0.95rem' }}>+500 ml Ekle</div>
                     <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Spor Matarası</div>
@@ -704,11 +692,11 @@ export const SmartTools: React.FC<SmartToolsProps> = ({ onSaveToPortal }) => {
                 }}
               >
                 <div style={{ fontWeight: 700, color: 'var(--color-teal)', marginBottom: '0.35rem' }}>
-                  💡 Dyt. Sena’nın Hidrasyon İpucu:
+                  Küçük bir öneri
                 </div>
                 <p style={{ color: 'var(--text-muted)', margin: 0, lineHeight: 1.5 }}>
-                  "Sabah uyanır uyanmaz oda sıcaklığında 2 bardak ılık suya 2 damla limon ve bir çimdik kaya tuzu eklemek, 
-                  adrenal bezlerinizi uyandırır ve sindirim ateşinizi başlatır."
+                  Sabah kalktığınızda bir bardak su içmeyi ve masanızda dolu bir şişe bulundurmayı alışkanlık haline getirin.
+                  Çoğu kişi için bu iki adım, günlük hedefin yarısını karşılamaya yetiyor.
                 </p>
               </div>
             </div>

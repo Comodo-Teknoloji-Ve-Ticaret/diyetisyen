@@ -18,6 +18,24 @@ import { SERVICES_DATA, CLINIC_INFO } from '../data/contentData';
 import type { AppointmentData } from '../types';
 
 
+const DAY_SHORT = ['Paz', 'Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt'];
+const MONTH_SHORT = ['Oca', 'Şub', 'Mar', 'Nis', 'May', 'Haz', 'Tem', 'Ağu', 'Eyl', 'Eki', 'Kas', 'Ara'];
+
+const toIso = (d: Date) =>
+  `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+
+/** Next 6 working days (Mon–Sat), starting tomorrow. */
+const buildAvailableDates = () => {
+  const out: { day: string; dateStr: string; value: string }[] = [];
+  const d = new Date();
+  while (out.length < 6) {
+    d.setDate(d.getDate() + 1);
+    if (d.getDay() === 0) continue; // Sunday closed
+    out.push({ day: DAY_SHORT[d.getDay()], dateStr: `${d.getDate()} ${MONTH_SHORT[d.getMonth()]}`, value: toIso(d) });
+  }
+  return out;
+};
+
 interface AppointmentModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -30,17 +48,19 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
   preSelectedServiceId
 }) => {
   const [step, setStep] = useState<number>(1);
+  const [availableDates] = useState(buildAvailableDates);
+  const [error, setError] = useState('');
 
   const [appointment, setAppointment] = useState<AppointmentData>({
     serviceId: preSelectedServiceId || 'surdurulebilir-kilo',
     appointmentType: 'online',
-    date: '2026-10-27',
-    timeSlot: '11:00',
+    date: '',
+    timeSlot: '',
     fullName: '',
     email: '',
     phone: '',
     notes: '',
-    healthGoals: 'Sağlıklı ve kalıcı kilo vermek, bedenimle barışmak istiyorum.'
+    healthGoals: ''
   });
 
   const [bookingConfirmed, setBookingConfirmed] = useState(false);
@@ -48,30 +68,28 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
 
   if (!isOpen) return null;
 
-  // Calendar dates mock (next 6 days)
-  const availableDates = [
-    { day: 'Pzt', dateStr: '27 Ekim', value: '2026-10-27' },
-    { day: 'Sal', dateStr: '28 Ekim', value: '2026-10-28' },
-    { day: 'Çar', dateStr: '29 Ekim', value: '2026-10-29' },
-    { day: 'Per', dateStr: '30 Ekim', value: '2026-10-30' },
-    { day: 'Cum', dateStr: '31 Ekim', value: '2026-10-31' },
-    { day: 'Cmt', dateStr: '01 Kas', value: '2026-11-01' },
-  ];
-
   const availableSlots = [
     '09:30', '11:00', '14:00', '15:30', '17:00', '18:30'
   ];
 
   const handleNext = () => {
+    setError('');
+    if (step === 2 && (!appointment.date || !appointment.timeSlot)) {
+      setError('Lütfen bir tarih ve saat seçin.');
+      return;
+    }
     if (step < 3) {
       setStep(step + 1);
     } else if (step === 3) {
-      // Validate inputs
-      if (!appointment.fullName || !appointment.phone) {
-        alert('Lütfen adınızı ve telefon numaranızı giriniz.');
+      if (appointment.fullName.trim().length < 3) {
+        setError('Lütfen adınızı ve soyadınızı yazın.');
         return;
       }
-      const code = 'DNA-' + Math.floor(1000 + Math.random() * 9000);
+      if (appointment.phone.replace(/\D/g, '').length < 10) {
+        setError('Lütfen geçerli bir telefon numarası yazın.');
+        return;
+      }
+      const code = 'EY-' + Math.floor(1000 + Math.random() * 9000);
       setBookingCode(code);
       setBookingConfirmed(true);
       setStep(4);
@@ -84,6 +102,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
   };
 
   const handlePrev = () => {
+    setError('');
     if (step > 1) {
       setStep(step - 1);
     }
@@ -107,7 +126,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
       onClick={onClose}
     >
       <div 
-        className="glass-panel"
+        className="glass-panel panel-pad"
         style={{
           width: '100%',
           maxWidth: '680px',
@@ -140,12 +159,12 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
 
         {/* Header */}
         <div style={{ marginBottom: '1.75rem' }}>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.8rem', fontWeight: 700, color: 'var(--color-primary)', backgroundColor: 'var(--color-primary-light)', padding: '0.25rem 0.75rem', borderRadius: 'var(--radius-full)', marginBottom: '0.5rem' }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.8rem', fontWeight: 700, color: 'var(--color-primary-text)', backgroundColor: 'var(--color-primary-light)', padding: '0.25rem 0.75rem', borderRadius: 'var(--radius-full)', marginBottom: '0.5rem' }}>
             <Calendar size={14} />
-            <span>Online Randevu & Ön Değerlendirme</span>
+            <span>Online veya yüz yüze</span>
           </div>
           <h2 style={{ fontSize: '1.75rem', color: 'var(--text-main)', margin: 0 }}>
-            {bookingConfirmed ? 'Randevunuz Başarıyla Oluşturuldu!' : 'Bedeninle Barışma Yolculuğuna Başla'}
+            {bookingConfirmed ? 'Randevu talebiniz alındı' : 'Randevu oluştur'}
           </h2>
         </div>
 
@@ -198,7 +217,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                       {srv.tagline}
                     </div>
                   </div>
-                  {appointment.serviceId === srv.id && <CheckCircle size={22} color="var(--color-primary)" />}
+                  {appointment.serviceId === srv.id && <CheckCircle size={22} color="var(--color-primary-text)" />}
                 </div>
               ))}
             </div>
@@ -253,7 +272,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                 }}
               >
                 <MapPin size={18} />
-                <span>Suadiye Kliniği (Yüz Yüze)</span>
+                <span>Kadıköy Ofis (Yüz Yüze)</span>
               </button>
             </div>
 
@@ -330,7 +349,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                 <input
                   type="text"
                   required
-                  placeholder="Örn: Sena Demirhan"
+                  placeholder="Örn: Ayşe Demir"
                   value={appointment.fullName}
                   onChange={(e) => setAppointment({ ...appointment, fullName: e.target.value })}
                   style={{
@@ -428,7 +447,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                 alignItems: 'center',
                 justifyContent: 'center',
                 marginBottom: '1.25rem',
-                color: 'var(--color-primary)'
+                color: 'var(--color-primary-text)'
               }}
             >
               <CheckCircle size={40} />
@@ -437,7 +456,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
             <div style={{ fontSize: '0.85rem', color: 'var(--text-muted)', marginBottom: '0.25rem' }}>
               Randevu Takip Kodu
             </div>
-            <div style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--color-primary)', letterSpacing: '0.08em', marginBottom: '1.5rem' }}>
+            <div style={{ fontSize: '1.5rem', fontWeight: 800, color: 'var(--color-primary-text)', letterSpacing: '0.08em', marginBottom: '1.5rem' }}>
               {bookingCode}
             </div>
 
@@ -463,16 +482,16 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '0.65rem', borderBottom: '1px solid var(--border-subtle)', marginBottom: '0.65rem' }}>
                 <span style={{ color: 'var(--text-muted)' }}>Görüşme Şekli:</span>
-                <strong>{appointment.appointmentType === 'online' ? 'Online Görüntülü' : 'Suadiye Kliniği'}</strong>
+                <strong>{appointment.appointmentType === 'online' ? 'Online Görüntülü' : 'Kadıköy Ofis'}</strong>
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <span style={{ color: 'var(--text-muted)' }}>Tarih & Saat:</span>
-                <strong>{appointment.date} • {appointment.timeSlot}</strong>
+                <strong>{(() => { const d = availableDates.find(x => x.value === appointment.date); return d ? `${d.day}, ${d.dateStr}` : appointment.date; })()} • {appointment.timeSlot}</strong>
               </div>
             </div>
 
             <p style={{ fontSize: '0.875rem', color: 'var(--text-muted)', marginBottom: '1.5rem' }}>
-              Asistanımız randevunuzu teyit etmek ve ilk görüşme öncesi <strong>Beslenme Anamnez Formunuzu</strong> iletmek üzere 15 dakika içinde WhatsApp üzerinden sizinle iletişime geçecektir.
+              Randevunuzu teyit etmek ve kısa <strong>ön bilgi formunu</strong> göndermek için mesai saatleri içinde WhatsApp'tan size yazacağım. İsterseniz aşağıdaki düğmeyle hemen de onaylayabilirsiniz.
             </p>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
@@ -484,7 +503,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                 style={{ backgroundColor: '#25D366', color: '#FFFFFF', padding: '0.9rem' }}
               >
                 <MessageSquare size={18} />
-                <span>WhatsApp İle Hızlı Onay Al</span>
+                <span>WhatsApp'tan onayla</span>
               </a>
 
               <button
@@ -494,6 +513,12 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                 Pencereyi Kapat
               </button>
             </div>
+          </div>
+        )}
+
+        {error && !bookingConfirmed && (
+          <div role="alert" style={{ marginBottom: '1rem', padding: '0.75rem 1rem', borderRadius: '12px', backgroundColor: 'var(--color-accent-light)', color: '#943822', fontSize: '0.9rem', fontWeight: 600 }}>
+            {error}
           </div>
         )}
 

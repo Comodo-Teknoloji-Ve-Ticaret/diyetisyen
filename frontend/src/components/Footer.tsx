@@ -1,6 +1,8 @@
 import React from 'react';
-import { Leaf, Heart, ArrowUp, Phone, Mail } from 'lucide-react';
+import { Leaf, ArrowUp, Phone, Mail } from 'lucide-react';
 import { CLINIC_INFO } from '../data/contentData';
+
+const CURRENT_YEAR = new Date().getFullYear();
 
 export const Footer: React.FC = () => {
   const scrollToTop = () => {
@@ -34,7 +36,7 @@ export const Footer: React.FC = () => {
                   width: '38px',
                   height: '38px',
                   borderRadius: '10px',
-                  background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%)',
+                  background: 'var(--color-primary)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
@@ -47,8 +49,8 @@ export const Footer: React.FC = () => {
                 <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 800, fontSize: '1.15rem', color: 'var(--text-main)' }}>
                   {CLINIC_INFO.name}
                 </div>
-                <div style={{ fontSize: '0.75rem', color: 'var(--color-primary)', fontWeight: 600 }}>
-                  BÜTÜNSEL BESLENME KLİNİĞİ
+                <div style={{ fontSize: '0.75rem', color: 'var(--color-primary-text)', fontWeight: 600 }}>
+                  DİYETİSYEN
                 </div>
               </div>
             </div>
@@ -59,7 +61,9 @@ export const Footer: React.FC = () => {
 
             <div style={{ display: 'flex', gap: '0.75rem' }}>
               <a
-                href="#"
+                href="https://instagram.com/"
+                target="_blank"
+                rel="noopener noreferrer"
                 aria-label="Instagram"
                 style={{
                   width: '36px',
@@ -121,19 +125,18 @@ export const Footer: React.FC = () => {
               Hızlı Bağlantılar
             </h4>
             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.65rem', fontSize: '0.9rem' }}>
-              <li><a href="#hakkimda" style={{ transition: 'color 0.2s' }}>Hakkımda & Yaklaşımım</a></li>
-              <li><a href="#hizmetler" style={{ transition: 'color 0.2s' }}>Klinik Danışmanlık Paketleri</a></li>
-              <li><a href="#akilli-araclar" style={{ transition: 'color 0.2s' }}>Akıllı Kalori & Makro Hesaplayıcı</a></li>
-              <li><a href="#akilli-araclar" style={{ transition: 'color 0.2s' }}>Dijital Su Takip Asistanı</a></li>
-              <li><a href="#moodnutri" style={{ transition: 'color 0.2s', color: 'var(--color-accent)', fontWeight: 600 }}>MoodNutri™ Modülü</a></li>
-              <li><a href="#yorumlar" style={{ transition: 'color 0.2s' }}>Danışan Yorumları & Başarılar</a></li>
+              <li><a href="#hakkimda" style={{ transition: 'color 0.2s' }}>Hakkımda</a></li>
+              <li><a href="#hizmetler" style={{ transition: 'color 0.2s' }}>Programlar</a></li>
+              <li><a href="#akilli-araclar" style={{ transition: 'color 0.2s' }}>Kalori Hesaplayıcı</a></li>
+                            <li><a href="#moodnutri" style={{ transition: 'color 0.2s' }}>Duygusal Yeme</a></li>
+              <li><a href="#yorumlar" style={{ transition: 'color 0.2s' }}>Danışan Yorumları</a></li>
             </ul>
           </div>
 
           {/* Clinic Working Hours & Location */}
           <div>
             <h4 style={{ fontSize: '1rem', color: 'var(--text-main)', marginBottom: '1.25rem' }}>
-              Klinik & Seans Saatleri
+              Adres & Saatler
             </h4>
             <div style={{ fontSize: '0.875rem', lineHeight: 1.7, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
               <div>
@@ -144,8 +147,8 @@ export const Footer: React.FC = () => {
                 <strong>Seans Saatleri:</strong><br />
                 {CLINIC_INFO.workingHours}
               </div>
-              <div style={{ color: 'var(--color-primary)', fontWeight: 600 }}>
-                Online Danışmanlık: 7/24 Randevu Girişi
+              <div style={{ color: 'var(--color-primary-text)', fontWeight: 600 }}>
+                Online randevu formu her zaman açık
               </div>
             </div>
           </div>
@@ -176,13 +179,9 @@ export const Footer: React.FC = () => {
           }}
         >
           <div>
-            © {new Date().getFullYear()} {CLINIC_INFO.clinicName}. Tüm hakları saklıdır.
+            © {CURRENT_YEAR} {CLINIC_INFO.clinicName}. Tüm hakları saklıdır.
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
-            <span>Bütünsel sağlık ve özşefkat ile tasarlandı</span>
-            <Heart size={14} color="var(--color-accent)" />
-          </div>
 
           <button
             onClick={scrollToTop}

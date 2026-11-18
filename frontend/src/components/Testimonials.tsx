@@ -3,7 +3,6 @@ import {
   Quote, 
   Star, 
   Heart, 
-  Sparkles, 
   ArrowRight,
   TrendingDown
 } from 'lucide-react';
@@ -29,14 +28,14 @@ export const Testimonials: React.FC<TestimonialsProps> = ({ onOpenAppointment })
         <div style={{ textAlign: 'center', maxWidth: '720px', margin: '0 auto 3rem auto' }}>
           <div className="section-tag">
             <Heart size={16} />
-            <span>Gerçek Danışan Dönüşümleri</span>
+            <span>Danışan Yorumları</span>
           </div>
           <h2 className="section-title">
-            Bedenleriyle Barışanların{' '}
-            <span style={{ color: 'var(--color-primary)' }}>İlham Veren Hikayeleri</span>
+            Danışanlarım{' '}
+            <span style={{ color: 'var(--color-primary-text)' }}>Neler Söylüyor?</span>
           </h2>
           <p className="section-subtitle" style={{ margin: '0 auto' }}>
-            Sadece tartıdaki rakamlar değil; kazanılan yaşam enerjisi, kaybolan tatlı krizleri ve düzelen kan tahlilleri.
+            Danışanlarımın izniyle paylaşılan yorumlar. İsimler kısaltılmıştır.
           </p>
 
           {/* Filter Pills */}
@@ -113,7 +112,7 @@ export const Testimonials: React.FC<TestimonialsProps> = ({ onOpenAppointment })
                     alignItems: 'center',
                     gap: '0.4rem',
                     backgroundColor: 'var(--color-secondary-light)',
-                    color: 'var(--color-primary)',
+                    color: 'var(--color-primary-text)',
                     padding: '0.35rem 0.85rem',
                     borderRadius: 'var(--radius-full)',
                     fontSize: '0.8rem',
@@ -127,7 +126,7 @@ export const Testimonials: React.FC<TestimonialsProps> = ({ onOpenAppointment })
 
                 {/* Quote Text */}
                 <p style={{ fontSize: '0.975rem', color: 'var(--text-main)', lineHeight: 1.7, marginBottom: '1.5rem', fontStyle: 'italic' }}>
-                  "{item.quote}"
+                  {item.quote}
                 </p>
               </div>
 
@@ -160,16 +159,24 @@ export const Testimonials: React.FC<TestimonialsProps> = ({ onOpenAppointment })
                     borderTop: '1px solid var(--border-subtle)'
                   }}
                 >
-                  <img
-                    src={item.avatar}
-                    alt={item.clientName}
+                  <div
+                    aria-hidden="true"
                     style={{
                       width: '46px',
                       height: '46px',
                       borderRadius: '50%',
-                      objectFit: 'cover'
+                      flexShrink: 0,
+                      backgroundColor: 'var(--color-primary-light)',
+                      color: 'var(--color-primary-text)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontWeight: 700,
+                      fontSize: '0.95rem'
                     }}
-                  />
+                  >
+                    {item.clientName.split(' ').map((p) => p[0]).join('')}
+                  </div>
                   <div>
                     <div style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--text-main)' }}>
                       {item.clientName}
@@ -200,15 +207,11 @@ export const Testimonials: React.FC<TestimonialsProps> = ({ onOpenAppointment })
           }}
         >
           <div style={{ maxWidth: '600px' }}>
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.4rem', fontSize: '0.85rem', fontWeight: 700, color: '#D8F3DC', marginBottom: '0.5rem' }}>
-              <Sparkles size={16} />
-              <span>Sıradaki Başarı Hikayesi Neden Sen Olmayasın?</span>
-            </div>
             <h3 style={{ fontSize: '1.75rem', color: '#FFFFFF', marginBottom: '0.5rem' }}>
-              Kısıtlamalardan Özgürleşmeye Hazır mısınız?
+              Önce tanışalım
             </h3>
             <p style={{ color: '#E8F5E9', fontSize: '0.95rem', margin: 0, opacity: 0.9 }}>
-              15 dakikalık ücretsiz ön değerlendirme seansımızda sağlık hedeflerinizi konuşalım.
+              15 dakikalık ücretsiz ön görüşmede hedeflerinizi konuşalım, size uygun programı birlikte seçelim.
             </p>
           </div>
 
@@ -217,7 +220,7 @@ export const Testimonials: React.FC<TestimonialsProps> = ({ onOpenAppointment })
             className="btn btn-accent"
             style={{ padding: '0.95rem 1.85rem', fontSize: '1rem' }}
           >
-            <span>Ön Değerlendirme Randevusu Al</span>
+            <span>Ön Görüşme Planla</span>
             <ArrowRight size={18} />
           </button>
         </div>
