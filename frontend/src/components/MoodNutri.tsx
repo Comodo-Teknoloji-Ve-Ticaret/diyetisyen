@@ -213,7 +213,7 @@ export const MoodNutri: React.FC<MoodNutriProps> = ({ onOpenAppointment }) => {
                 backgroundColor: 'var(--color-primary-light)',
                 padding: '1.75rem',
                 borderRadius: '20px',
-                border: '1px solid rgba(45, 106, 79, 0.2)'
+                border: '1px solid rgba(180, 83, 42, 0.2)'
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.25rem' }}>
@@ -235,22 +235,22 @@ export const MoodNutri: React.FC<MoodNutriProps> = ({ onOpenAppointment }) => {
             {/* Foods to Avoid */}
             <div 
               style={{
-                backgroundColor: 'var(--color-accent-light)',
+                backgroundColor: 'var(--neg-bg)',
                 padding: '1.75rem',
                 borderRadius: '20px',
-                border: '1px solid rgba(224, 122, 95, 0.2)'
+                border: '1px solid var(--neg-border)'
               }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '1.25rem' }}>
-                <XCircle size={20} color="var(--color-accent)" />
-                <h4 style={{ fontSize: '1.1rem', color: 'var(--color-accent)' }}>
+                <XCircle size={20} color="var(--neg-icon)" />
+                <h4 style={{ fontSize: '1.1rem', color: 'var(--neg-title)' }}>
                   Bunları azaltın
                 </h4>
               </div>
               <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
                 {selectedItem.foodsToAvoid.map((food, i) => (
                   <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.9rem', color: 'var(--text-main)' }}>
-                    <span style={{ color: 'var(--color-accent)', fontWeight: 700 }}>•</span>
+                    <span style={{ color: 'var(--neg-icon)', fontWeight: 700 }}>•</span>
                     <span>{food}</span>
                   </li>
                 ))}

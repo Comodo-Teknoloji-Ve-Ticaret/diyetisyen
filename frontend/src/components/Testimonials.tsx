@@ -197,7 +197,7 @@ export const Testimonials: React.FC<TestimonialsProps> = ({ onOpenAppointment })
           style={{
             padding: '2.5rem 3rem',
             borderRadius: '28px',
-            background: 'linear-gradient(135deg, var(--color-primary) 0%, #173829 100%)',
+            background: 'linear-gradient(135deg, var(--color-primary) 0%, #7A3519 100%)',
             color: '#FFFFFF',
             display: 'flex',
             flexWrap: 'wrap',
@@ -210,7 +210,7 @@ export const Testimonials: React.FC<TestimonialsProps> = ({ onOpenAppointment })
             <h3 style={{ fontSize: '1.75rem', color: '#FFFFFF', marginBottom: '0.5rem' }}>
               Önce tanışalım
             </h3>
-            <p style={{ color: '#E8F5E9', fontSize: '0.95rem', margin: 0, opacity: 0.9 }}>
+            <p style={{ color: '#FFF4EC', fontSize: '0.95rem', margin: 0, opacity: 0.9 }}>
               15 dakikalık ücretsiz ön görüşmede hedeflerinizi konuşalım, size uygun programı birlikte seçelim.
             </p>
           </div>

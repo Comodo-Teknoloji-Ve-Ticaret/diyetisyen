@@ -68,7 +68,7 @@ export const Services: React.FC<ServicesProps> = ({ onSelectServiceForBooking })
                 flexDirection: 'column',
                 justifyContent: 'space-between',
                 transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-                border: service.id === 'surdurulebilir-kilo' ? '2px solid rgba(45, 106, 79, 0.3)' : '1px solid var(--border-light)'
+                border: service.id === 'surdurulebilir-kilo' ? '2px solid rgba(180, 83, 42, 0.3)' : '1px solid var(--border-light)'
               }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = 'translateY(-6px)';

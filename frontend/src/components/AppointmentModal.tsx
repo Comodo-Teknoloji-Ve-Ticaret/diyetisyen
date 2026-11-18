@@ -272,7 +272,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
                 }}
               >
                 <MapPin size={18} />
-                <span>Kadıköy Ofis (Yüz Yüze)</span>
+                <span>Muratpaşa Ofis (Yüz Yüze)</span>
               </button>
             </div>
 
@@ -482,7 +482,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between', paddingBottom: '0.65rem', borderBottom: '1px solid var(--border-subtle)', marginBottom: '0.65rem' }}>
                 <span style={{ color: 'var(--text-muted)' }}>Görüşme Şekli:</span>
-                <strong>{appointment.appointmentType === 'online' ? 'Online Görüntülü' : 'Kadıköy Ofis'}</strong>
+                <strong>{appointment.appointmentType === 'online' ? 'Online Görüntülü' : 'Muratpaşa Ofis'}</strong>
               </div>
               <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <span style={{ color: 'var(--text-muted)' }}>Tarih & Saat:</span>
@@ -517,7 +517,7 @@ export const AppointmentModal: React.FC<AppointmentModalProps> = ({
         )}
 
         {error && !bookingConfirmed && (
-          <div role="alert" style={{ marginBottom: '1rem', padding: '0.75rem 1rem', borderRadius: '12px', backgroundColor: 'var(--color-accent-light)', color: '#943822', fontSize: '0.9rem', fontWeight: 600 }}>
+          <div role="alert" style={{ marginBottom: '1rem', padding: '0.75rem 1rem', borderRadius: '12px', backgroundColor: 'var(--color-accent-light)', color: 'var(--neg-title)', fontSize: '0.9rem', fontWeight: 600 }}>
             {error}
           </div>
         )}

@@ -2,75 +2,94 @@
   --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
 
-  /* Palette - Organic Sage & Warm Linen */
-  --color-primary: #2D6A4F;
-  --color-primary-hover: #1B4332;
-  --color-primary-light: #E8F5E9;
-  --color-primary-text: #2D6A4F;
-  --color-primary-glow: rgba(45, 106, 79, 0.2);
-  
-  --color-accent: #E07A5F;
-  --color-accent-hover: #C9664C;
-  --color-accent-light: #FDF0ED;
+  /* Palette — warm neutrals + terracotta accent + a little sage
+     (common pattern on dietitian sites: cream/beige base, one warm accent) */
+  --color-primary: #B4532A;
+  --color-primary-hover: #94421F;
+  --color-primary-light: #FAEAE0;
+  --color-primary-text: #A64B24;
+  --color-primary-glow: rgba(180, 83, 42, 0.2);
 
-  --color-secondary: #52B788;
-  --color-secondary-light: #D8F3DC;
+  --color-accent: #5F7F64;
+  --color-accent-hover: #4C6851;
+  --color-accent-light: #EBF1EA;
 
-  --color-amber: #F4A261;
-  --color-teal: #2A9D8F;
-  --color-blue: #457B9D;
+  --color-secondary: #8FAE8F;
+  --color-secondary-light: #EEF3EC;
+
+  --color-amber: #E2A04A;
+  --color-teal: #3D7EA6;
+  --color-blue: #4A6FA5;
 
   /* Theme Light */
-  --bg-main: #FBF9F5;
+  --bg-main: #FBF7F2;
   --bg-surface: #FFFFFF;
   --bg-surface-elevated: #FFFFFF;
-  --bg-subtle: #F4EFE6;
+  --bg-subtle: #F4ECE3;
   --bg-card: rgba(255, 255, 255, 0.85);
+  --nav-bg: rgba(251, 247, 242, 0.92);
 
-  --text-main: #1C2D27;
-  --text-muted: #52665E;
-  --text-light: #8A9E96;
+  --text-main: #2A211C;
+  --text-muted: #6B5E55;
+  --text-light: #9A8D84;
 
-  --border-light: rgba(45, 106, 79, 0.12);
+  --border-light: rgba(120, 80, 50, 0.14);
   --border-subtle: rgba(0, 0, 0, 0.06);
 
-  --shadow-sm: 0 2px 8px rgba(45, 106, 79, 0.04);
-  --shadow-md: 0 8px 24px rgba(45, 106, 79, 0.08);
-  --shadow-lg: 0 16px 36px rgba(45, 106, 79, 0.12);
-  --shadow-glow: 0 0 28px rgba(82, 183, 136, 0.35);
+  --shadow-sm: 0 2px 8px rgba(80, 50, 30, 0.05);
+  --shadow-md: 0 8px 24px rgba(80, 50, 30, 0.08);
+  --shadow-lg: 0 16px 36px rgba(80, 50, 30, 0.12);
+  --shadow-glow: 0 0 28px rgba(180, 83, 42, 0.25);
 
   --radius-sm: 8px;
   --radius-md: 16px;
   --radius-lg: 24px;
   --radius-full: 9999px;
 
-  --glass-bg: rgba(255, 255, 255, 0.75);
+  --glass-bg: rgba(255, 255, 255, 0.78);
   --glass-border: rgba(255, 255, 255, 0.6);
+
+  /* "negative" cards (şok diyetler, kaçınılacaklar) */
+  --neg-bg: #F5EFEA;
+  --neg-border: rgba(107, 94, 85, 0.18);
+  --neg-title: #6B4A3A;
+  --neg-text: #4F433C;
+  --neg-icon: #9A7B6A;
 }
 
 [data-theme='dark'] {
-  --color-primary-text: #7BCFA4;
-  --color-primary-light: rgba(82, 183, 136, 0.14);
-  --bg-main: #0E1813;
-  --bg-surface: #15241D;
-  --bg-surface-elevated: #1B2E25;
-  --bg-subtle: #192A22;
-  --bg-card: rgba(21, 36, 29, 0.85);
+  --color-primary-text: #EDA885;
+  --color-primary-light: rgba(232, 162, 127, 0.14);
+  --color-accent-light: rgba(143, 174, 143, 0.14);
+  --color-secondary-light: rgba(143, 174, 143, 0.14);
 
-  --text-main: #F2F7F4;
-  --text-muted: #A3BFB4;
-  --text-light: #708C82;
+  --bg-main: #1A1512;
+  --bg-surface: #231C18;
+  --bg-surface-elevated: #2B231E;
+  --bg-subtle: #2A211C;
+  --bg-card: rgba(35, 28, 24, 0.85);
+  --nav-bg: rgba(26, 21, 18, 0.92);
 
-  --border-light: rgba(82, 183, 136, 0.18);
+  --text-main: #F5EEE8;
+  --text-muted: #C2B3A8;
+  --text-light: #8F8076;
+
+  --border-light: rgba(232, 162, 127, 0.16);
   --border-subtle: rgba(255, 255, 255, 0.08);
 
   --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.25);
   --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.35);
   --shadow-lg: 0 16px 36px rgba(0, 0, 0, 0.45);
-  --shadow-glow: 0 0 32px rgba(82, 183, 136, 0.25);
+  --shadow-glow: 0 0 32px rgba(232, 162, 127, 0.2);
 
-  --glass-bg: rgba(21, 36, 29, 0.8);
-  --glass-border: rgba(82, 183, 136, 0.2);
+  --glass-bg: rgba(35, 28, 24, 0.82);
+  --glass-border: rgba(232, 162, 127, 0.18);
+
+  --neg-bg: rgba(255, 255, 255, 0.04);
+  --neg-border: rgba(255, 255, 255, 0.1);
+  --neg-title: #E3C7B8;
+  --neg-text: #C2B3A8;
+  --neg-icon: #B7998A;
 }
 
 * {
@@ -147,8 +166,8 @@ button, input, select, textarea {
 }
 
 [data-theme='dark'] .section-tag {
-  background-color: rgba(82, 183, 136, 0.15);
-  color: var(--color-secondary);
+  background-color: var(--color-primary-light);
+  color: var(--color-primary-text);
 }
 
 .section-title {
@@ -195,26 +214,27 @@ button, input, select, textarea {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--color-primary) 0%, #1E4D38 100%);
+  background: var(--color-primary);
   color: #FFFFFF;
-  box-shadow: 0 4px 14px rgba(45, 106, 79, 0.25);
+  box-shadow: 0 4px 14px rgba(180, 83, 42, 0.22);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 22px rgba(45, 106, 79, 0.35);
-  background: linear-gradient(135deg, #378262 0%, #255F45 100%);
+  box-shadow: 0 8px 22px rgba(180, 83, 42, 0.3);
+  background: var(--color-primary-hover);
 }
 
 .btn-accent {
-  background: linear-gradient(135deg, var(--color-accent) 0%, #C9664C 100%);
+  background: var(--color-accent);
   color: #FFFFFF;
-  box-shadow: 0 4px 14px rgba(224, 122, 95, 0.3);
+  box-shadow: 0 4px 14px rgba(95, 127, 100, 0.25);
 }
 
 .btn-accent:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 22px rgba(224, 122, 95, 0.4);
+  box-shadow: 0 8px 22px rgba(95, 127, 100, 0.35);
+  background: var(--color-accent-hover);
 }
 
 .btn-secondary {
@@ -280,7 +300,7 @@ button, input, select, textarea {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-secondary);
+  background: #D8C7B8;
   border-radius: 4px;
 }
 

@@ -58,7 +58,7 @@ export const Navbar: React.FC<NavbarProps> = ({
         zIndex: 1000,
         transition: 'all 0.3s ease',
         backgroundColor: scrolled 
-          ? (theme === 'dark' ? 'rgba(14, 24, 19, 0.92)' : 'rgba(251, 249, 245, 0.92)')
+          ? ('var(--nav-bg)')
           : 'transparent',
         backdropFilter: scrolled ? 'blur(16px)' : 'none',
         WebkitBackdropFilter: scrolled ? 'blur(16px)' : 'none',

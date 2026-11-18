@@ -60,7 +60,7 @@ flowchart TD
 
 ### 6. Online Randevu Sistemi (Stepped Booking Modal)
 - **Adım 1**: Program seçimi (Kilo yönetimi, fonksiyonel tıp, sporcu, Duygusal Yeme vb.)
-- **Adım 2**: Seans şekli (Online Görüntülü vs. Kadıköy Ofis Yüz Yüze) ile interaktif tarih ve saat slotu seçimi.
+- **Adım 2**: Seans şekli (Online Görüntülü vs. Muratpaşa Ofis Yüz Yüze) ile interaktif tarih ve saat slotu seçimi.
 - **Adım 3**: Danışan iletişim bilgileri ve sağlık hedefi notu.
 - **Adım 4**: Otomatik üretilen Takip Kodu (Örn: `EY-8492`), randevu özeti ve tek tıkla WhatsApp hızlı onay yönlendirmesi.
 

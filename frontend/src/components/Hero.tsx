@@ -37,7 +37,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenAppointment, onScrollToTools }
 
             <ul className="hero__facts">
               <li><Video size={16} /> Online görüşme</li>
-              <li><MapPin size={16} /> Kadıköy'de yüz yüze</li>
+              <li><MapPin size={16} /> Antalya Muratpaşa'da yüz yüze</li>
               <li><Clock size={16} /> Pzt–Cmt 09:00–19:00</li>
             </ul>
           </div>

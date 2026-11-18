@@ -240,7 +240,7 @@ export const ClientPortalModal: React.FC<ClientPortalModalProps> = ({ isOpen, on
               backgroundColor: 'var(--color-primary-light)',
               padding: '1.5rem',
               borderRadius: '20px',
-              border: '1px solid rgba(45, 106, 79, 0.25)',
+              border: '1px solid rgba(180, 83, 42, 0.25)',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'space-between'

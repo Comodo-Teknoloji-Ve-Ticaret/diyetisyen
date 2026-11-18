@@ -13,10 +13,10 @@ export const CLINIC_INFO = {
   title: 'Diyetisyen',
   clinicName: 'Emir Yontar Beslenme Danışmanlığı',
   motto: 'Yasak listeleriyle değil, gündelik hayatınıza uyan bir planla. Online ve yüz yüze beslenme danışmanlığı.',
-  phone: '+90 (216) 450 88 90',
-  whatsapp: '+90 532 100 20 30',
+  phone: '0507 850 52 87',
+  whatsapp: '+90 507 850 52 87',
   email: 'iletisim@emiryontar.com',
-  address: 'Bağdat Caddesi No: 342 Kat: 4 Daire: 8, Suadiye / Kadıköy, İstanbul',
+  address: 'Muratpaşa / Antalya',
   workingHours: 'Pazartesi - Cumartesi: 09:00 - 19:00',
   instagram: '@dytemiryontar',
 };

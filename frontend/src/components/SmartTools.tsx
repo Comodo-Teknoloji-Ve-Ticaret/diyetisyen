@@ -485,7 +485,7 @@ export const SmartTools: React.FC<SmartToolsProps> = ({ onSaveToPortal }) => {
                   position: 'relative',
                   overflow: 'hidden',
                   backgroundColor: 'var(--bg-subtle)',
-                  boxShadow: '0 12px 30px rgba(42, 157, 143, 0.25)',
+                  boxShadow: '0 12px 30px rgba(61, 126, 166, 0.25)',
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'flex-end'

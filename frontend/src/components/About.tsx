@@ -205,7 +205,7 @@ export const About: React.FC = () => {
                   display: 'flex',
                   alignItems: 'center',
                   gap: '0.5rem',
-                  backgroundColor: activeTab === 'restrictive' ? '#8A3B28' : 'transparent',
+                  backgroundColor: activeTab === 'restrictive' ? '#6B5E55' : 'transparent',
                   color: activeTab === 'restrictive' ? '#FFFFFF' : 'var(--text-muted)',
                   transition: 'all 0.25s ease'
                 }}
@@ -226,7 +226,7 @@ export const About: React.FC = () => {
                 animation: 'fadeIn 0.3s ease'
               }}
             >
-              <div style={{ padding: '1.5rem', borderRadius: '18px', backgroundColor: 'var(--color-primary-light)', border: '1px solid rgba(45, 106, 79, 0.2)' }}>
+              <div style={{ padding: '1.5rem', borderRadius: '18px', backgroundColor: 'var(--color-primary-light)', border: '1px solid rgba(180, 83, 42, 0.2)' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', marginBottom: '0.75rem' }}>
                   <CheckCircle size={22} color="var(--color-primary-text)" />
                   <h4 style={{ fontSize: '1.1rem', color: 'var(--color-primary-text)' }}>Önce sizi tanıyorum</h4>
@@ -236,7 +236,7 @@ export const About: React.FC = () => {
                 </p>
               </div>
 
-              <div style={{ padding: '1.5rem', borderRadius: '18px', backgroundColor: 'var(--color-primary-light)', border: '1px solid rgba(45, 106, 79, 0.2)' }}>
+              <div style={{ padding: '1.5rem', borderRadius: '18px', backgroundColor: 'var(--color-primary-light)', border: '1px solid rgba(180, 83, 42, 0.2)' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', marginBottom: '0.75rem' }}>
                   <CheckCircle size={22} color="var(--color-primary-text)" />
                   <h4 style={{ fontSize: '1.1rem', color: 'var(--color-primary-text)' }}>Duygusal yemeyi konuşuyoruz</h4>
@@ -246,7 +246,7 @@ export const About: React.FC = () => {
                 </p>
               </div>
 
-              <div style={{ padding: '1.5rem', borderRadius: '18px', backgroundColor: 'var(--color-primary-light)', border: '1px solid rgba(45, 106, 79, 0.2)' }}>
+              <div style={{ padding: '1.5rem', borderRadius: '18px', backgroundColor: 'var(--color-primary-light)', border: '1px solid rgba(180, 83, 42, 0.2)' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', marginBottom: '0.75rem' }}>
                   <CheckCircle size={22} color="var(--color-primary-text)" />
                   <h4 style={{ fontSize: '1.1rem', color: 'var(--color-primary-text)' }}>Yasak listesi yok</h4>
@@ -265,32 +265,32 @@ export const About: React.FC = () => {
                 animation: 'fadeIn 0.3s ease'
               }}
             >
-              <div style={{ padding: '1.5rem', borderRadius: '18px', backgroundColor: '#FDF0ED', border: '1px solid rgba(224, 122, 95, 0.25)' }}>
+              <div style={{ padding: '1.5rem', borderRadius: '18px', backgroundColor: 'var(--neg-bg)', border: '1px solid var(--neg-border)' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', marginBottom: '0.75rem' }}>
-                  <XCircle size={22} color="#C9664C" />
-                  <h4 style={{ fontSize: '1.1rem', color: '#943822' }}>Sürekli açlık</h4>
+                  <XCircle size={22} color="var(--neg-icon)" />
+                  <h4 style={{ fontSize: '1.1rem', color: 'var(--neg-title)' }}>Sürekli açlık</h4>
                 </div>
-                <p style={{ fontSize: '0.925rem', color: '#4A251C', lineHeight: 1.6 }}>
+                <p style={{ fontSize: '0.925rem', color: 'var(--neg-text)', lineHeight: 1.6 }}>
                   Günde 800-1000 kaloriyle uzun süre devam etmek zor; açlık ve yorgunluk bir noktada bırakmanıza yol açıyor.
                 </p>
               </div>
 
-              <div style={{ padding: '1.5rem', borderRadius: '18px', backgroundColor: '#FDF0ED', border: '1px solid rgba(224, 122, 95, 0.25)' }}>
+              <div style={{ padding: '1.5rem', borderRadius: '18px', backgroundColor: 'var(--neg-bg)', border: '1px solid var(--neg-border)' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', marginBottom: '0.75rem' }}>
-                  <XCircle size={22} color="#C9664C" />
-                  <h4 style={{ fontSize: '1.1rem', color: '#943822' }}>Verip geri almak</h4>
+                  <XCircle size={22} color="var(--neg-icon)" />
+                  <h4 style={{ fontSize: '1.1rem', color: 'var(--neg-title)' }}>Verip geri almak</h4>
                 </div>
-                <p style={{ fontSize: '0.925rem', color: '#4A251C', lineHeight: 1.6 }}>
+                <p style={{ fontSize: '0.925rem', color: 'var(--neg-text)', lineHeight: 1.6 }}>
                   Diyet bittiği gün verilen kilolar hızla geri alınır; çünkü kişi yeni bir yaşam tarzı değil, geçici bir ceza süreci yaşamıştır.
                 </p>
               </div>
 
-              <div style={{ padding: '1.5rem', borderRadius: '18px', backgroundColor: '#FDF0ED', border: '1px solid rgba(224, 122, 95, 0.25)' }}>
+              <div style={{ padding: '1.5rem', borderRadius: '18px', backgroundColor: 'var(--neg-bg)', border: '1px solid var(--neg-border)' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem', marginBottom: '0.75rem' }}>
-                  <XCircle size={22} color="#C9664C" />
-                  <h4 style={{ fontSize: '1.1rem', color: '#943822' }}>Suçluluk ve bırakma</h4>
+                  <XCircle size={22} color="var(--neg-icon)" />
+                  <h4 style={{ fontSize: '1.1rem', color: 'var(--neg-title)' }}>Suçluluk ve bırakma</h4>
                 </div>
-                <p style={{ fontSize: '0.925rem', color: '#4A251C', lineHeight: 1.6 }}>
+                <p style={{ fontSize: '0.925rem', color: 'var(--neg-text)', lineHeight: 1.6 }}>
                   Bir dilim pasta yüzünden "zaten bozdum" deyip tüm günü bırakmak, şok diyetlerde çok sık görülüyor.
                 </p>
               </div>
